@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ขออนุมัติไปประชุม · BUDHOSPITAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#5b84f7; --blue-d:#3f68e0; --blue-l:#eef3ff; --teal:#1fd1a5; --amber:#f9a825; --red:#ef5350; --orange:#ff8a3d;
+  --ink:#2b2f38; --muted:#8a93a6; --line:#e4e9f2; --bg:#f6f8fc; --card:#fff; --head:#dfe7fb;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Prompt',system-ui,sans-serif;font-weight:300;color:var(--ink);background:var(--bg);font-size:15px}
+b,strong,th{font-weight:500}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit}
+/* layout */
+#sb{position:fixed;inset:0 auto 0 0;width:270px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:30;transition:transform .2s}
+.logo{padding:22px 24px;font-weight:600;font-size:22px;letter-spacing:.5px;background:linear-gradient(90deg,#1e9bff,#21d4a3);-webkit-background-clip:text;background-clip:text;color:transparent;display:flex;align-items:center;gap:8px}
+.logo span.ic{font-size:22px;-webkit-text-fill-color:initial}
+.nav{flex:1;overflow:auto;padding:4px 16px}
+.nav h6{margin:14px 6px 8px;font-size:13px;font-weight:500;letter-spacing:.5px;color:#333}
+.nav a{display:flex;align-items:center;gap:14px;padding:11px 14px;border-radius:10px;color:var(--ink);text-decoration:none;margin-bottom:4px}
+.nav a:hover{background:var(--blue-l)}
+.nav a.on{background:var(--blue);color:#fff;font-weight:400}
+.nav a .bd{margin-left:auto;background:var(--red);color:#fff;border-radius:20px;font-size:12px;padding:1px 8px}
+.nav a.on .bd{background:#fff;color:var(--blue)}
+.ucard{margin:12px 16px 16px;background:var(--blue-l);border-radius:14px;padding:14px}
+.ucard .row{display:flex;gap:10px;align-items:center}
+.ucard select{width:100%;margin-top:10px;padding:7px;border:1px solid var(--blue);border-radius:8px;color:var(--blue);background:#fff}
+.ucard small{color:var(--muted);font-size:12px}
+.av{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:500;flex:none;background:linear-gradient(135deg,#5b84f7,#21d4a3)}
+main{margin-left:270px;min-height:100vh}
+.top{height:64px;background:#fff;display:flex;align-items:center;gap:14px;padding:0 24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.top .ham{display:none;border:0;background:none;font-size:24px;cursor:pointer}
+.top .who{margin-left:auto;display:flex;gap:10px;align-items:center;font-size:14px}
+.top .who small{display:block;color:var(--muted);font-size:12px}
+.wrap{padding:22px;max-width:1280px}
+.banner{background:var(--blue);color:#fff;padding:14px 22px;border-radius:12px;font-size:20px;font-weight:400;margin-bottom:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.banner small{font-size:14px;opacity:.85}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px}
+.card h2{margin:0 0 14px;font-size:20px;font-weight:400}
+.card h3{margin:0 0 10px;font-size:16px;font-weight:500}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.split{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:18px;align-items:start}
+.sticky{position:sticky;top:84px}
+table.t{width:100%;border-collapse:collapse}
+.t th{background:var(--head);border:1px solid #c9d5f3;padding:9px 10px;font-weight:500}
+.t td{border:1px solid var(--line);padding:8px 10px}
+.t td.n,.t th.n{text-align:right}.t td.c{text-align:center}
+.t tr.tot td{background:#f5f7fd;font-weight:500}
+.t tr.click{cursor:pointer}.t tr.click:hover td{background:#f7f9ff}
+.tbl{overflow-x:auto}
+label.f{display:block;font-size:13px;color:#56607a;margin-bottom:4px}
+.in{width:100%;padding:9px 11px;border:1px solid #d3dbea;border-radius:9px;background:#fff;color:var(--ink)}
+.in:focus{outline:2px solid #c7d6ff;border-color:var(--blue)}
+textarea.in{min-height:80px;resize:vertical}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:flex;align-items:center;gap:7px;border:1px solid #d3dbea;border-radius:9px;padding:8px 12px;cursor:pointer;background:#fff}
+.opt:has(input:checked){border-color:var(--blue);background:var(--blue-l);color:var(--blue-d)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:4px}
+.sec{font-size:15px;font-weight:500;color:var(--blue-d);margin:22px 0 12px;padding-bottom:6px;border-bottom:1px dashed var(--line)}
+.sec:first-child{margin-top:0}
+.btn{border:0;border-radius:10px;padding:10px 18px;cursor:pointer;background:var(--blue);color:#fff;font-weight:400;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{background:var(--blue-d)}
+.btn.o{background:#fff;color:var(--blue);border:1px solid var(--blue)}
+.btn.g{background:var(--teal)}.btn.r{background:var(--red)}.btn.y{background:var(--orange)}
+.btn.s{padding:6px 12px;font-size:13.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.acts{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-block;border-radius:20px;padding:3px 12px;font-size:13px;font-weight:400;white-space:nowrap}
+.p-wait{background:#fff4dc;color:#b77800}.p-ok{background:#dcf8ef;color:#0b8a66}.p-bad{background:#ffe3e3;color:#c62828}
+.p-ret{background:#ffeadb;color:#c25500}.p-done{background:#e6ecff;color:#3f68e0}.p-gray{background:#eceff4;color:#69738a}
+.err{background:#fff0f0;border:1px solid #ffc9c9;color:#b71c1c;border-radius:10px;padding:10px 14px;font-size:14px;margin-bottom:12px}
+.warn{background:#fff8e6;border:1px solid #ffe2a3;color:#8a5a00;border-radius:10px;padding:10px 14px;font-size:14px;margin:10px 0}
+.ok{background:#e9fbf4;border:1px solid #b6eed8;color:#0b6b50;border-radius:10px;padding:10px 14px;font-size:14px;margin:10px 0}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 12px;font-size:14.5px}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+.big{font-size:30px;font-weight:500;color:var(--blue-d)}
+.stat{background:var(--blue-l);border-radius:12px;padding:14px}
+.stat small{color:#56607a;display:block}
+.sum-row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px;border-bottom:1px dotted var(--line)}
+.sum-row.tot{font-weight:500;font-size:16px;border:0;padding-top:10px}
+/* stepper */
+.steps{display:flex;justify-content:space-between;position:relative;margin:10px 0 6px;overflow-x:auto}
+.step{flex:1;text-align:center;min-width:95px;position:relative}
+.step:not(:last-child)::after{content:'';position:absolute;top:26px;left:calc(50% + 30px);right:calc(-50% + 30px);border-top:2px dashed #d8dee9}
+.step.done:not(:last-child)::after{border-top:2px solid var(--teal)}
+.dot{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;display:grid;place-items:center;color:#fff;font-size:20px;font-weight:500;background:#cfd6e3}
+.step.done .dot{background:var(--teal)}.step.cur .dot{background:var(--amber);box-shadow:0 0 0 6px #fff1cc}
+.step.bad .dot{background:var(--red)}
+.step b{display:block;font-size:13.5px;font-weight:400}.step small{display:block;color:var(--muted);font-size:12px}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding:0 0 14px 22px;border-left:2px solid var(--line);margin-left:6px}
+.tl li::before{content:'';position:absolute;left:-7px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--blue)}
+.tl li:last-child{border-color:transparent}
+.tl small{color:var(--muted)}
+.rules li{padding:8px 0;border-bottom:1px solid var(--line);line-height:1.6}
+.hide{display:none!important}
+.muted{color:var(--muted)}
+/* modal */
+#modal{position:fixed;inset:0;background:rgba(20,30,60,.45);display:none;align-items:flex-start;justify-content:center;z-index:50;overflow:auto;padding:30px 12px}
+#modal.on{display:flex}
+#modal .box{background:#fff;border-radius:16px;max-width:780px;width:100%;padding:22px}
+#modal .box h2{margin:0 0 14px;font-weight:400}
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#263238;color:#fff;padding:10px 20px;border-radius:10px;z-index:60;display:none}
+#print{display:none}
+.cam{position:relative;background:#111;border-radius:12px;overflow:hidden;aspect-ratio:4/3}
+.cam video,.cam img{width:100%;height:100%;object-fit:cover;display:block}
+.cam .oval{position:absolute;left:50%;top:50%;width:46%;height:72%;transform:translate(-50%,-50%);border:3px dashed rgba(255,255,255,.8);border-radius:50%;pointer-events:none}
+.cam .msg{position:absolute;inset:auto 0 0 0;background:rgba(0,0,0,.55);color:#fff;font-size:13px;padding:6px 10px;text-align:center}
+.thumb{width:52px;height:52px;border-radius:8px;object-fit:cover;background:#e9edf5;vertical-align:middle;cursor:pointer}
+.refrow{display:grid;grid-template-columns:170px 1fr 150px 34px;gap:8px;margin-bottom:6px;align-items:start}
+.refrow .lk{grid-column:1/-1;font-size:12.5px;margin:-2px 0 4px}
+.xbtn{border:1px solid #f3c1c1;background:#fff;color:var(--red);border-radius:8px;height:40px;cursor:pointer}
+.files{list-style:none;margin:8px 0 0;padding:0}
+.files li{display:flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:9px;margin-bottom:6px;font-size:14px}
+.files li a{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.drop{border:2px dashed #c9d5f3;border-radius:12px;padding:14px;text-align:center;color:var(--muted);cursor:pointer;background:#fafbff}
+.drop:hover{border-color:var(--blue);color:var(--blue)}
+@media (max-width:860px){.refrow{grid-template-columns:1fr 1fr}.refrow .xbtn{grid-column:2}}
+@media (max-width:1000px){.split{grid-template-columns:1fr}.sticky{position:static}.g4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  #sb{transform:translateX(-100%)} body.nav-open #sb{transform:none;box-shadow:0 0 40px rgba(0,0,0,.2)}
+  main{margin-left:0}.top .ham{display:block}.wrap{padding:16px}
+  .g2,.g3{grid-template-columns:1fr}.kv{grid-template-columns:110px 1fr}
+  .top .who div{display:none}
+}
+/* ---------- print (เอกสารราชการ) ---------- */
+@media print{
+  @page{size:A4;margin:2cm 2cm 2cm 3cm}
+  body{background:#fff}
+  #sb,main,#modal,#toast{display:none!important}
+  #print{display:block;font-family:'Sarabun',serif;font-size:15pt;line-height:1.55;color:#000}
+  #print h1{text-align:center;font-size:24pt;margin:0 0 6pt}
+  #print h2{text-align:center;font-size:17pt;margin:0 0 10pt}
+  #print p{margin:0 0 6pt}
+  #print .ind{text-indent:2.5cm}
+  #print table{width:100%;border-collapse:collapse;font-size:14pt;margin:6pt 0}
+  #print td,#print th{border:1px solid #000;padding:2pt 6pt}
+  #print .n{text-align:right}
+  #print .sign{margin:20pt 0 0 45%;text-align:center}
+  #print .box2{display:grid;grid-template-columns:1fr 1fr;gap:10pt;margin-top:14pt}
+  #print .bx{border:1px solid #000;padding:6pt 8pt;font-size:14pt;min-height:120pt}
+  #print .pb{page-break-before:always}
+  #print .hdr td{border:0;padding:0 0 4pt}
+}
+</style>
+</head>
+<body>
+<aside id="sb">
+  <div class="logo"><span class="ic">✚</span>BUDHOSPITAL</div>
+  <nav class="nav" id="nav"></nav>
+  <div class="ucard" id="ucard"></div>
+</aside>
+<main>
+  <div class="top">
+    <button class="ham" onclick="document.body.classList.toggle('nav-open')" aria-label="เมนู">☰</button>
+    <div style="font-weight:400">ระบบขออนุมัติไปประชุม / อบรม / สัมมนาภายนอก</div>
+    <div class="who" id="who"></div>
+  </div>
+  <div class="wrap" id="view"></div>
+</main>
+<div id="modal"><div class="box" id="mbox"></div></div>
+<div id="toast"></div>
+<div id="print"></div>
+
+<script>
+'use strict';
+/* =====================================================================
+   ข้อมูลตั้งต้น (ข้อมูลสมมติทั้งหมด — ไม่ใช่บุคคลจริง)
+   ===================================================================== */
+const HOSP = 'โรงพยาบาลพุทธชินราช พิษณุโลก';
+const USERS = [
+  {id:'s1',name:'นพ.ก้องภพ ตัวอย่าง',      pos:'นายแพทย์ชำนาญการ',                    dept:'กลุ่มงานนิติเวช',               role:'staff',   grade:'A'},
+  {id:'s2',name:'น.ส.พิมพ์ชนก ทดลอง',      pos:'นักวิทยาศาสตร์การแพทย์ปฏิบัติการ',      dept:'กลุ่มงานนิติเวช',               role:'staff',   grade:'A'},
+  {id:'s3',name:'นายธนา สมมติ',            pos:'เจ้าพนักงานวิทยาศาสตร์การแพทย์ชำนาญงาน', dept:'กลุ่มงานนิติเวช',               role:'staff',   grade:'A'},
+  {id:'h1',name:'นพ.วิทยา หัวหน้าตัวอย่าง', pos:'นายแพทย์ชำนาญการพิเศษ',               dept:'กลุ่มงานนิติเวช',               role:'head',    grade:'B'},
+  {id:'s4',name:'พญ.อรุณี ตัวอย่าง',        pos:'นายแพทย์ชำนาญการ',                    dept:'กลุ่มงานพยาธิวิทยากายวิภาค',     role:'staff',   grade:'A'},
+  {id:'h2',name:'พญ.สุดา หัวหน้าทดลอง',    pos:'นายแพทย์ชำนาญการพิเศษ',               dept:'กลุ่มงานพยาธิวิทยากายวิภาค',     role:'head',    grade:'B'},
+  {id:'d1',name:'นพ.ผู้อำนวยการ สมมติ',     pos:'ผู้อำนวยการ'+HOSP,                     dept:'สำนักผู้อำนวยการ',              role:'director',grade:'B'},
+  {id:'f1',name:'นางการเงิน ตัวอย่าง',      pos:'นักวิชาการเงินและบัญชีชำนาญการ',        dept:'กลุ่มงานการเงิน',               role:'finance', grade:'A'},
+];
+const ROLE_TXT = {staff:'ผู้ขอ / บุคลากร',head:'หัวหน้ากลุ่มงาน',director:'ผู้อำนวยการ',finance:'เจ้าหน้าที่การเงิน'};
+const KIND = {conf:'ประชุมวิชาการ',train:'อบรม',seminar:'สัมมนา',workshop:'ประชุมเชิงปฏิบัติการ',study:'ศึกษาดูงาน'};
+const TRAVEL = {
+  private_car:'รถยนต์ส่วนตัว',official_car:'รถยนต์ราชการ (โรงพยาบาล)',plane:'เครื่องบิน',
+  bus:'รถโดยสารประจำทาง',train:'รถไฟ',other:'อื่น ๆ (รถรับจ้าง/แท็กซี่)'
+};
+const FARE_TRAVEL = ['plane','bus','train'];
+const ROLE_MEET = {attend:'เข้าฟังอย่างเดียว (เต็มวัน)',speaker:'เป็นวิทยากรอย่างเดียว',both:'เป็นวิทยากรและเข้าฟัง'};
+const REF_KIND = {ext:'หนังสือเชิญ (ภายนอก)',int:'หนังสือภายใน รพ.'};
+/* ทะเบียนหนังสือภายใน (จำลองระบบสารบรรณ) — ใช้ค้นจากเลขหนังสือ */
+const INTERNAL_DOCS = [
+  {no:'พล 0033.205/ว 145',date:'2026-09-20',subject:'ขอเชิญส่งบุคลากรเข้ารับการอบรมการเก็บรักษาวัตถุพยานทางชีววิทยา',from:'กลุ่มงานพัฒนาทรัพยากรบุคคล'},
+  {no:'พล 0033.102/2580',date:'2026-09-28',subject:'แจ้งกำหนดการประชุมวิชาการเครือข่ายนิติเวชภาคเหนือ',from:'กลุ่มงานนิติเวช'},
+  {no:'พล 0033.001/ว 77',date:'2026-10-01',subject:'ประชาสัมพันธ์การสัมมนาพยาธิวิทยาดิจิทัล',from:'สำนักผู้อำนวยการ'},
+];
+const normNo = s=>String(s||'').replace(/\s+/g,'').replace(/[๐-๙]/g,d=>'๐๑๒๓๔๕๖๗๘๙'.indexOf(d)).toLowerCase();
+const findInternal = no=>no?INTERNAL_DOCS.find(d=>normNo(d.no)===normNo(no)):null;
+const BUDGET = ['เงินบำรุงโรงพยาบาล','เงินงบประมาณ','ผู้จัดออกค่าใช้จ่าย','ไม่เบิกค่าใช้จ่าย'];
+const STATUS = {
+  pending_head:['รอหัวหน้ากลุ่มงานอนุมัติ','p-wait'], pending_dir:['รอผู้อำนวยการอนุมัติ','p-wait'],
+  returned:['ส่งกลับแก้ไข','p-ret'], approved:['อนุมัติแล้ว · รอสรุปประชุม','p-ok'],
+  reported:['ส่งสรุปแล้ว · รอทำเรื่องเบิก','p-ok'], claim_pending:['รอการเงินตรวจเบิก','p-wait'],
+  paid:['เบิกจ่ายแล้ว','p-done'], closed:['ปิดเรื่อง (ไม่เบิก)','p-done'],
+  rejected:['ไม่อนุมัติ','p-bad'], cancelled:['ยกเลิก','p-gray'],
+};
+const DEFAULT_SETTINGS = {
+  quota:2,                 // สิทธิ์ไปประชุมต่อคนต่อปีงบประมาณ
+  perDiemA:240, perDiemB:270,      // เบี้ยเลี้ยงเหมาจ่าย/วัน (ประเภท ก / ข)
+  lodgingA:1500, lodgingB:2200,    // ค่าเช่าที่พักจ่ายจริงห้องเดี่ยว ไม่เกิน/คืน
+  carRate:4,               // รถยนต์ส่วนตัว บาท/กม.
+  p4pAttendDay:10, p4pSpeakerHour:25,   // เกณฑ์ P4P (สมมติ ปรับได้): เข้าฟังเต็มวัน / วิทยากรต่อชั่วโมง
+  reportDays:15,           // ต้องส่งสรุปภายใน n วันหลังกลับ
+  gpsRadius:300,           // รัศมี (เมตร) จากพิกัดห้องประชุมที่ถือว่าอยู่ในที่ประชุม
+};
+
+/* =====================================================================
+   Utilities
+   ===================================================================== */
+const $ = (s,r=document)=>r.querySelector(s);
+const $$ = (s,r=document)=>[...r.querySelectorAll(s)];
+const esc = s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = v=>{const n=parseFloat(v);return isFinite(n)?n:0};
+const money = n=>num(n).toLocaleString('th-TH',{minimumFractionDigits:0,maximumFractionDigits:2});
+const pad = n=>String(n).padStart(2,'0');
+const isoOf = d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const todayISO = ()=>isoOf(new Date());
+const parseD = s=>{if(!s)return null;const [y,m,d]=s.slice(0,10).split('-').map(Number);return new Date(y,m-1,d)};
+const addDays = (s,n)=>{const d=parseD(s);d.setDate(d.getDate()+n);return isoOf(d)};
+const dayDiff = (a,b)=>Math.round((parseD(b)-parseD(a))/864e5);
+const fmtD = s=>s?parseD(s).toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'}):'-';
+const fmtDL = s=>s?parseD(s).toLocaleDateString('th-TH',{day:'numeric',month:'long',year:'numeric'}):'-';
+const fmtDT = s=>s?new Date(s).toLocaleString('th-TH',{day:'numeric',month:'short',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'-';
+const fyOf = s=>{const d=parseD(s);return d.getFullYear()+543+(d.getMonth()>=9?1:0)};
+const curFY = ()=>fyOf(todayISO());
+const range = (a,b)=>{ if(!a||!b) return '-'; return a===b?fmtDL(a):`${fmtDL(a)} – ${fmtDL(b)}` };
+const initials = n=>n.replace(/^(นพ\.|พญ\.|นาย|นาง|น\.ส\.)/,'').trim().slice(0,1);
+
+function bahtText(v){
+  v=Math.round(num(v)*100)/100;
+  const N=['ศูนย์','หนึ่ง','สอง','สาม','สี่','ห้า','หก','เจ็ด','แปด','เก้า'],P=['','สิบ','ร้อย','พัน','หมื่น','แสน'];
+  const conv=s=>{
+    let out='';
+    if(s.length>6){out+=conv(s.slice(0,-6))+'ล้าน';s=s.slice(-6)}
+    const L=s.length;
+    for(let i=0;i<L;i++){const d=+s[i],p=L-i-1;if(!d)continue;
+      if(p===1&&d===1)out+='สิบ';else if(p===1&&d===2)out+='ยี่สิบ';
+      else if(p===0&&d===1&&L>1&&/[1-9]/.test(s.slice(0,-1)))out+='เอ็ด';else out+=N[d]+P[p];}
+    return out;
+  };
+  const i=Math.floor(v),st=Math.round((v-i)*100);
+  let t=i>0?conv(String(i))+'บาท':(st?'':'ศูนย์บาท');
+  return t+(st?conv(String(st))+'สตางค์':'ถ้วน');
+}
+
+/* =====================================================================
+   Storage
+   ===================================================================== */
+const LS='extmeet.v2';
+let db;
+/* ไฟล์แนบ/ภาพสแกนหน้า เก็บใน IndexedDB (localStorage เก็บแค่ metadata) */
+const IDB={
+  _p:null,
+  open(){return this._p||(this._p=new Promise((res,rej)=>{const q=indexedDB.open('extmeet',1);q.onupgradeneeded=()=>q.result.createObjectStore('files');q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)}))},
+  async tx(mode,fn){const d=await this.open();return new Promise((res,rej)=>{const t=d.transaction('files',mode);const q=fn(t.objectStore('files'));t.oncomplete=()=>res(q&&q.result);t.onerror=()=>rej(t.error)})},
+  put(id,blob){return this.tx('readwrite',s=>s.put(blob,id))},
+  get(id){return this.tx('readonly',s=>s.get(id))},
+  del(id){return this.tx('readwrite',s=>s.delete(id))},
+  clear(){return this.tx('readwrite',s=>s.clear())},
+};
+const fid = ()=>'f'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const MAX_FILE = 10*1024*1024;
+async function storeFiles(list,kind){ // list: File[] → metadata[]
+  const out=[];
+  for(const f of list){const id=fid();await IDB.put(id,f);out.push({id,name:f.name,type:f.type,size:f.size,kind,at:new Date().toISOString()})}
+  return out;
+}
+const fsize = b=>b>1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+/* แสดงภาพ / เปิดไฟล์จาก IndexedDB */
+async function hydrate(root=document){
+  for(const img of $$('img[data-fid]',root)){const b=await IDB.get(img.dataset.fid).catch(()=>null);if(b)img.src=URL.createObjectURL(b);img.removeAttribute('data-fid')}
+}
+document.addEventListener('click',async e=>{
+  const a=e.target.closest('[data-open]');if(!a)return;e.preventDefault();
+  const b=await IDB.get(a.dataset.open).catch(()=>null);
+  if(!b){toast('ไม่พบไฟล์ (ไฟล์อยู่ในเบราว์เซอร์เครื่องที่อัปโหลดเท่านั้น)');return}
+  window.open(URL.createObjectURL(b),'_blank');
+});
+function save(){try{localStorage.setItem(LS,JSON.stringify(db))}catch(e){}}
+function load(){
+  try{db=JSON.parse(localStorage.getItem(LS))}catch(e){db=null}
+  if(!db||!db.requests){db=seed()}
+  db.settings={...DEFAULT_SETTINGS,...(db.settings||{})};
+}
+const S = ()=>db.settings;
+const me = ()=>USERS.find(u=>u.id===db.me)||USERS[0];
+const user = id=>USERS.find(u=>u.id===id);
+const reqById = id=>db.requests.find(r=>r.id===id);
+function nextNo(fy){db.seq[fy]=(db.seq[fy]||0)+1;return `EM-${fy}-${String(db.seq[fy]).padStart(3,'0')}`}
+function log(r,action,comment=''){const u=me();r.history.push({at:new Date().toISOString(),by:u.id,role:u.role,action,comment})}
+
+function seed(){
+  const t=todayISO(), now=new Date();
+  const ago=d=>new Date(now-d*864e5).toISOString();
+  const d0={me:'s1',seq:{},settings:{...DEFAULT_SETTINGS},requests:[]};
+  const fyNow=fyOf(t), fyPrev=fyNow-1;
+  const mk=(o)=>({memberIds:[],quotaUse:true,quotaReason:'',lodgingNights:'',speakDate:'',refs:[],files:[],checkins:[],venueLat:null,venueLng:null,history:[],report:null,claim:null,...o});
+  // 1) อนุมัติแล้ว — ไปเป็นกลุ่ม เป็นวิทยากร
+  d0.seq[fyNow]=3;
+  d0.requests.push(mk({id:'r1',no:`EM-${fyNow}-001`,createdAt:ago(9),requesterId:'s1',
+    title:'การประชุมวิชาการประจำปี สมาคมนิติเวชศาสตร์ (ตัวอย่าง)',kind:'conf',organizer:'สมาคมนิติเวชศาสตร์ (สมมติ)',
+    venue:'โรงแรมตัวอย่าง กรุงเทพมหานคร',province:'กรุงเทพมหานคร',venueLat:13.7466,venueLng:100.5393,
+    refs:[{kind:'ext',no:'สมาคม 012/2569',date:addDays(t,-15),subject:'ขอเชิญเป็นวิทยากรและเข้าร่วมประชุมวิชาการประจำปี'}],
+    purpose:'เพื่อพัฒนาความรู้ด้านการชันสูตรพลิกศพและนำเสนอแนวทางปฏิบัติของหน่วยงาน',
+    attendMode:'group',memberIds:['s2'],departDate:addDays(t,34),meetStart:addDays(t,35),meetEnd:addDays(t,37),returnDate:addDays(t,37),
+    travel:'plane',fare:3200,distanceKm:0,sharedCost:0,role:'both',speakerHours:2,speakDate:addDays(t,36),regFee:3500,lodgingRate:1400,budgetSource:BUDGET[0],
+    status:'approved',history:[
+      {at:ago(9),by:'s1',role:'staff',action:'ยื่นคำขออนุมัติ'},
+      {at:ago(8),by:'h1',role:'head',action:'หัวหน้ากลุ่มงานเห็นชอบ',comment:'เห็นควรอนุมัติ เป็นประโยชน์ต่อหน่วยงาน'},
+      {at:ago(6),by:'d1',role:'director',action:'ผู้อำนวยการอนุมัติ',comment:'อนุมัติ'}]}));
+  // 2) รอหัวหน้า — ไปคนเดียว รถส่วนตัว
+  d0.requests.push(mk({id:'r2',no:`EM-${fyNow}-002`,createdAt:ago(2),requesterId:'s3',
+    title:'อบรมการเก็บและรักษาวัตถุพยานทางชีววิทยา (ตัวอย่าง)',kind:'train',organizer:'สถาบันนิติวิทยาศาสตร์ (สมมติ)',
+    venue:'ศูนย์ประชุมตัวอย่าง',province:'เชียงใหม่',venueLat:18.7883,venueLng:98.9853,
+    refs:[{kind:'int',no:'พล 0033.205/ว 145',date:'2026-09-20',subject:INTERNAL_DOCS[0].subject}],purpose:'พัฒนาทักษะการจัดเก็บวัตถุพยานให้ถูกต้องตามมาตรฐาน',
+    attendMode:'solo',departDate:addDays(t,20),meetStart:addDays(t,21),meetEnd:addDays(t,22),returnDate:addDays(t,22),
+    travel:'private_car',distanceKm:600,fare:0,sharedCost:0,role:'attend',speakerHours:0,regFee:2000,lodgingRate:900,budgetSource:BUDGET[0],
+    status:'pending_head',history:[{at:ago(2),by:'s3',role:'staff',action:'ยื่นคำขออนุมัติ'}]}));
+  // 3) รอ ผอ. — กลุ่มงานพยาธิ
+  d0.requests.push(mk({id:'r3',no:`EM-${fyNow}-003`,createdAt:ago(3),requesterId:'s4',
+    title:'สัมมนาพยาธิวิทยาดิจิทัล (ตัวอย่าง)',kind:'seminar',organizer:'ราชวิทยาลัยพยาธิแพทย์ (สมมติ)',
+    venue:'โรงแรมตัวอย่าง ขอนแก่น',province:'ขอนแก่น',venueLat:16.4322,venueLng:102.8236,purpose:'ศึกษาระบบพยาธิวิทยาดิจิทัลเพื่อวางแผนพัฒนาหน่วยงาน',
+    refs:[{kind:'int',no:'พล 0033.001/ว 77',date:'2026-10-01',subject:INTERNAL_DOCS[2].subject}],
+    attendMode:'solo',departDate:addDays(t,12),meetStart:addDays(t,13),meetEnd:addDays(t,13),returnDate:addDays(t,13),
+    travel:'bus',fare:900,distanceKm:0,sharedCost:0,role:'speaker',speakerHours:1.5,speakDate:addDays(t,13),regFee:1500,lodgingRate:1000,budgetSource:BUDGET[0],
+    status:'pending_dir',history:[{at:ago(3),by:'s4',role:'staff',action:'ยื่นคำขออนุมัติ'},{at:ago(1),by:'h2',role:'head',action:'หัวหน้ากลุ่มงานเห็นชอบ',comment:''}]}));
+  // 4) ปีงบก่อน — ครบกระบวนการ เบิกจ่ายแล้ว
+  const pS=`${fyPrev-543}-08-18`;
+  d0.seq[fyPrev]=1;
+  d0.requests.push(mk({id:'r4',no:`EM-${fyPrev}-001`,createdAt:ago(80),requesterId:'s1',
+    title:'อบรมการตรวจพิสูจน์บุคคลด้วยวิธีทันตนิติเวช (ตัวอย่าง)',kind:'train',organizer:'มหาวิทยาลัยตัวอย่าง',
+    venue:'คณะแพทยศาสตร์ มหาวิทยาลัยตัวอย่าง',province:'พิษณุโลก',venueLat:16.7480,venueLng:100.1920,
+    refs:[{kind:'ext',no:'มหาวิทยาลัยตัวอย่าง 0527/1188',date:`${fyPrev-543}-07-20`,subject:'ขอเชิญเข้ารับการอบรม'}],
+    checkins:[0,1].map(i=>({id:'c4'+i,uid:'s1',day:addDays(pS,i),at:addDays(pS,i)+'T08:4'+i+':00',lat:16.7482,lng:100.1917,acc:12,dist:38,inRange:true,photoId:null,face:null,note:'',demo:false})),
+    purpose:'เพิ่มศักยภาพการพิสูจน์เอกลักษณ์บุคคล',
+    attendMode:'solo',departDate:pS,meetStart:pS,meetEnd:addDays(pS,1),returnDate:addDays(pS,1),
+    travel:'official_car',sharedCost:0,fare:0,distanceKm:0,role:'attend',speakerHours:0,regFee:1000,lodgingRate:0,lodgingNights:0,budgetSource:BUDGET[0],
+    status:'paid',
+    report:{at:ago(40),summary:'เรียนรู้หลักการบันทึกข้อมูลฟันและการเปรียบเทียบข้อมูลก่อน-หลังเสียชีวิต',benefit:'ใช้พิสูจน์เอกลักษณ์ศพนิรนาม',apply:'จัดทำแบบบันทึกข้อมูลฟันของหน่วยงาน',share:'บรรยายถ่ายทอดในการประชุมกลุ่มงาน',speakerHours:0,cert:true},
+    claim:{at:ago(38),departDT:pS+'T07:00',returnDT:addDays(pS,1)+'T17:00',meals:2,regFee:1000,lodging:0,transport:0,other:0,otherNote:'',docs:['receiptReg','invite','report'],voucher:'PV-0457',paidAt:ago(30)},
+    history:[{at:ago(80),by:'s1',role:'staff',action:'ยื่นคำขออนุมัติ'},{at:ago(79),by:'h1',role:'head',action:'หัวหน้ากลุ่มงานเห็นชอบ'},{at:ago(77),by:'d1',role:'director',action:'ผู้อำนวยการอนุมัติ'},
+      {at:ago(40),by:'s1',role:'staff',action:'ส่งสรุปการประชุม'},{at:ago(38),by:'s1',role:'staff',action:'ยื่นเรื่องเบิกเงิน'},{at:ago(30),by:'f1',role:'finance',action:'การเงินอนุมัติจ่าย',comment:'ใบสำคัญ PV-0457'}]}));
+  return d0;
+}
+
+/* =====================================================================
+   กฎคำนวณ
+   ===================================================================== */
+const people = r=>[r.requesterId,...(r.attendMode==='group'?(r.memberIds||[]):[])].map(user).filter(Boolean);
+const perDiemRate = u=>u.grade==='B'?S().perDiemB:S().perDiemA;
+const lodgingCap = u=>u.grade==='B'?S().lodgingB:S().lodgingA;
+const COUNTED_OUT = ['rejected','cancelled'];
+const PENDING = ['pending_head','pending_dir','returned'];
+
+function quotaOf(uid,fy,excludeId){
+  const list=db.requests.filter(r=>r.id!==excludeId&&r.quotaUse&&!COUNTED_OUT.includes(r.status)&&r.meetStart&&fyOf(r.meetStart)===fy&&people(r).some(p=>p.id===uid));
+  const pending=list.filter(r=>PENDING.includes(r.status)).length;
+  const used=list.length-pending;
+  return {used,pending,left:S().quota-list.length,list};
+}
+function calcEst(r){
+  const ok=r.departDate&&r.returnDate&&dayDiff(r.departDate,r.returnDate)>=0;
+  const days=ok?dayDiff(r.departDate,r.returnDate)+1:0;
+  const nights=r.lodgingNights===''||r.lodgingNights==null?Math.max(0,days-1):num(r.lodgingNights);
+  const rows=people(r).map(u=>{
+    const cap=lodgingCap(u),rate=Math.min(num(r.lodgingRate),cap);
+    const row={u,perDiem:days*perDiemRate(u),lodging:nights*rate,reg:num(r.regFee),fare:FARE_TRAVEL.includes(r.travel)?num(r.fare):0,over:num(r.lodgingRate)>cap,cap};
+    row.total=row.perDiem+row.lodging+row.reg+row.fare;return row;
+  });
+  const shared=r.travel==='private_car'?num(r.distanceKm)*S().carRate:(['official_car','other'].includes(r.travel)?num(r.sharedCost):0);
+  const total=rows.reduce((a,x)=>a+x.total,0)+shared;
+  return {days,nights,rows,shared,total:r.budgetSource==='ไม่เบิกค่าใช้จ่าย'||r.budgetSource==='ผู้จัดออกค่าใช้จ่าย'?0:total,gross:total};
+}
+function meetDays(r){return r.meetStart&&r.meetEnd&&dayDiff(r.meetStart,r.meetEnd)>=0?dayDiff(r.meetStart,r.meetEnd)+1:0}
+function calcP4P(r,hours){
+  const s=S(),d=meetDays(r),h=hours??num(r.speakerHours);
+  const parts=[];
+  if(r.role!=='speaker')parts.push({t:`เข้าฟังเต็มวัน ${d} วัน × ${s.p4pAttendDay}`,v:d*s.p4pAttendDay});
+  if(r.role!=='attend')parts.push({t:`วิทยากร ${h} ชม. × ${s.p4pSpeakerHour}`,v:h*s.p4pSpeakerHour});
+  return {parts,total:parts.reduce((a,x)=>a+x.v,0),member:d*s.p4pAttendDay};
+}
+/* ---------- ลงเวลาเข้าประชุม (สแกนหน้า + GPS) ---------- */
+function meetDayList(r){const out=[];for(let i=0;i<meetDays(r);i++)out.push(addDays(r.meetStart,i));return out}
+// ผู้เข้าฟัง/ผู้ร่วมเดินทาง: ต้องลงเวลาทุกวันประชุม · วิทยากรอย่างเดียว: ลงเฉพาะวันบรรยาย
+function requiredDaysFor(r,uid){return uid===r.requesterId&&r.role==='speaker'?[r.speakDate||r.meetStart]:meetDayList(r)}
+const checkinOf = (r,uid,day)=>(r.checkins||[]).find(c=>c.uid===uid&&c.day===day);
+const checkinDone = (r,uid)=>requiredDaysFor(r,uid).every(d=>checkinOf(r,uid,d));
+const allCheckedIn = r=>people(r).every(p=>checkinDone(r,p.id));
+function distM(a1,o1,a2,o2){const R=6371e3,k=Math.PI/180,dA=(a2-a1)*k,dO=(o2-o1)*k;const x=Math.sin(dA/2)**2+Math.cos(a1*k)*Math.cos(a2*k)*Math.sin(dO/2)**2;return 2*R*Math.asin(Math.sqrt(x))}
+const mapLink = (lat,lng,t='แผนที่')=>`<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank" rel="noopener">${t}</a>`;
+const fmtDist = m=>m==null?'-':m>=1000?(m/1000).toFixed(1)+' กม.':Math.round(m)+' ม.';
+/* เบี้ยเลี้ยงตามระเบียบ: 24 ชม. = 1 วัน, เศษเกิน 12 ชม. = 1 วัน; ไม่พักแรม เศษเกิน 6 ชม. = ครึ่งวัน; ผู้จัดเลี้ยงอาหาร หักมื้อละ 1/3 */
+function perDiemDays(depDT,retDT,lodged){
+  if(!depDT||!retDT)return 0;
+  const h=(new Date(retDT)-new Date(depDT))/36e5;if(h<=0)return 0;
+  const full=Math.floor(h/24),rem=h-full*24;
+  if(rem>12)return full+1;
+  if(!lodged&&rem>6)return full+0.5;
+  return full;
+}
+function calcClaim(r,c){
+  const est=calcEst(r);
+  const days=perDiemDays(c.departDT,c.returnDT,est.nights>0||num(c.lodging)>0);
+  const ppl=people(r);
+  const rows=ppl.map(u=>{const rate=perDiemRate(u);const pd=Math.max(0,days*rate-num(c.meals)*rate/3);return {u,rate,perDiem:Math.round(pd*100)/100}});
+  const n=ppl.length||1;
+  rows.forEach(x=>{x.lodging=num(c.lodging)/n;x.transport=num(c.transport)/n;x.reg=num(c.regFee)/n;x.other=num(c.other)/n;x.total=x.perDiem+x.lodging+x.transport+x.reg+x.other});
+  const capTotal=ppl.reduce((a,u)=>a+lodgingCap(u),0)*Math.max(est.nights,0);
+  return {days,rows,total:rows.reduce((a,x)=>a+x.total,0),capTotal,lodgingOver:num(c.lodging)>capTotal&&capTotal>=0&&num(c.lodging)>0};
+}
+
+/* =====================================================================
+   Navigation
+   ===================================================================== */
+function counts(){
+  const u=me();
+  return {
+    head:db.requests.filter(r=>r.status==='pending_head'&&user(r.requesterId)?.dept===u.dept).length,
+    dir:db.requests.filter(r=>r.status==='pending_dir').length,
+    fin:db.requests.filter(r=>r.status==='claim_pending').length,
+    mine:db.requests.filter(r=>r.requesterId===u.id&&['returned','approved','reported'].includes(r.status)).length,
+  };
+}
+function renderNav(){
+  const u=me(),c=counts(),cur=location.hash.split('/')[1]||'home';
+  const a=(k,ic,t,b)=>`<a href="#/${k}" class="${cur===k?'on':''}"><span>${ic}</span>${t}${b?`<span class="bd">${b}</span>`:''}</a>`;
+  let h=`<h6>DASHBOARD</h6>${a('home','🏠','หน้าแรก')}${a('new','📝','ยื่นขออนุมัติไปประชุม')}${a('mine','🗂️','ประวัติของฉัน',c.mine)}`;
+  if(u.role==='head')h+=a('approve','✅','รออนุมัติ (หัวหน้า)',c.head);
+  if(u.role==='director')h+=a('approve','✅','รออนุมัติ (ผอ.)',c.dir);
+  if(u.role==='finance')h+=a('finance','💰','รอตรวจเบิก',c.fin);
+  h+=`<h6>ทะเบียน / รายงาน</h6>${a('all','📊','ทะเบียนและสถิติ')}${a('settings','⚙️','ตั้งค่าอัตรา / เกณฑ์ P4P')}`;
+  $('#nav').innerHTML=h;
+  $('#ucard').innerHTML=`<div class="row"><div class="av">${esc(initials(u.name))}</div><div><b style="font-size:14px">${esc(u.name)}</b><br><small>${esc(ROLE_TXT[u.role])}</small></div></div>
+   <select id="swUser" title="สลับผู้ใช้ (โหมดสาธิต)">${USERS.map(x=>`<option value="${x.id}" ${x.id===u.id?'selected':''}>${esc(x.name)} — ${ROLE_TXT[x.role]}</option>`).join('')}</select>
+   <small>โหมดสาธิต: สลับผู้ใช้เพื่อทดลองแต่ละบทบาท</small>`;
+  $('#swUser').onchange=e=>{db.me=e.target.value;save();toast('สลับเป็น '+me().name);location.hash='#/home';route()};
+  $('#who').innerHTML=`<div style="text-align:right"><b>${esc(u.name)}</b><small>${esc(u.pos)} · ${esc(u.dept)}</small></div><div class="av">${esc(initials(u.name))}</div>`;
+}
+function route(){
+  document.body.classList.remove('nav-open');
+  const [,v='home',id]=location.hash.split('/');
+  renderNav();
+  const V={home:vHome,new:()=>vForm(),edit:()=>vForm(reqById(id)),mine:vMine,approve:vApprove,finance:vFinance,all:vAll,settings:vSettings,r:()=>vDetail(reqById(id))};
+  (V[v]||vHome)();
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+function toast(t){const el=$('#toast');el.textContent=t;el.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>el.style.display='none',2600)}
+function modal(title,html,buttons,onClose){
+  modal.onClose=onClose||null;
+  $('#mbox').innerHTML=`<h2>${title}</h2><div id="mbody">${html}</div><div class="acts" style="margin-top:16px;justify-content:flex-end" id="mbtn"></div>`;
+  const mb=$('#mbtn');
+  [...buttons,{t:'ปิด',cls:'o',fn:()=>true}].forEach(b=>{const x=document.createElement('button');x.className='btn '+(b.cls||'');x.textContent=b.t;x.onclick=()=>{if(b.fn()!==false)closeModal()};mb.appendChild(x)});
+  $('#modal').classList.add('on');
+}
+function closeModal(){$('#modal').classList.remove('on');if(modal.onClose){const f=modal.onClose;modal.onClose=null;f()}}
+$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
+/* =====================================================================
+   ส่วนประกอบ UI
+   ===================================================================== */
+const pill = s=>`<span class="pill ${STATUS[s][1]}">${STATUS[s][0]}</span>`;
+function stepIndex(r){
+  if(r.status==='approved')return allCheckedIn(r)?4:3;
+  return {pending_head:1,returned:1,pending_dir:2,reported:5,claim_pending:6,paid:7,closed:7,rejected:-1,cancelled:-1}[r.status];
+}
+function stepper(r){
+  const st=['ยื่นเรื่อง','หัวหน้ากลุ่มงาน','ผู้อำนวยการ','ลงเวลาเข้าประชุม','สรุปการประชุม','ทำเรื่องเบิก','การเงินจ่าย'];
+  const req=user(r.requesterId);
+  const head=USERS.find(u=>u.role==='head'&&u.dept===req.dept);
+  const ci=people(r).reduce((a,p)=>a+requiredDaysFor(r,p.id).filter(d=>checkinOf(r,p.id,d)).length,0);
+  const ciN=people(r).reduce((a,p)=>a+requiredDaysFor(r,p.id).length,0);
+  const sub=[req.name,head?.name||'',user('d1').name,`สแกนหน้า + GPS (${ci}/${ciN})`,'ผู้เดินทาง','ผู้เดินทาง','กลุ่มงานการเงิน'];
+  let idx=stepIndex(r);
+  let badAt=-1;
+  if(idx===-1){ // ไม่อนุมัติ/ยกเลิก: หาว่าหยุดที่ขั้นไหน
+    const hasDir=r.history.some(h=>h.role==='director'&&/อนุมัติ$/.test(h.action)&&!/ไม่/.test(h.action));
+    const hasHead=r.history.some(h=>h.role==='head'&&/เห็นชอบ/.test(h.action));
+    badAt=hasDir?3:hasHead?2:1; idx=badAt;
+  }
+  const doneTo = r.status==='paid'||r.status==='closed'?7:idx;
+  return `<div class="steps">${st.map((s,i)=>{
+    let cls=i<doneTo?'done':(i===idx?'cur':'');
+    if(i===badAt)cls='bad';
+    const icon=cls==='done'?'✓':cls==='bad'?'✕':(i===0?'➤':i);
+    return `<div class="step ${cls}"><div class="dot">${icon}</div><b>${s}</b><small>${esc(sub[i])}</small></div>`}).join('')}</div>`;
+}
+function reqTable(list,empty='ไม่พบข้อมูล'){
+  if(!list.length)return `<div class="muted" style="padding:14px">${empty}</div>`;
+  return `<div class="tbl"><table class="t"><thead><tr><th>เลขที่</th><th>เรื่อง</th><th>ผู้ขอ</th><th>วันประชุม</th><th class="n">ประมาณการ (บาท)</th><th>สถานะ</th></tr></thead><tbody>${
+    list.slice().sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).map(r=>`<tr class="click" onclick="location.hash='#/r/${r.id}'">
+      <td>${esc(r.no)}</td><td>${esc(r.title)}<br><small class="muted">${KIND[r.kind]} · ${esc(r.province)} · ${r.attendMode==='group'?`กลุ่ม ${people(r).length} คน`:'คนเดียว'}</small></td>
+      <td>${esc(user(r.requesterId).name)}</td><td>${fmtD(r.meetStart)}</td><td class="n">${money(calcEst(r).total)}</td><td>${pill(r.status)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function quotaTable(uid,fy){
+  const q=quotaOf(uid,fy);
+  const noQ=db.requests.filter(r=>!r.quotaUse&&!COUNTED_OUT.includes(r.status)&&r.meetStart&&fyOf(r.meetStart)===fy&&people(r).some(p=>p.id===uid)).length;
+  const p4p=db.requests.filter(r=>!COUNTED_OUT.includes(r.status)&&!PENDING.includes(r.status)&&r.meetStart&&fyOf(r.meetStart)===fy&&people(r).some(p=>p.id===uid))
+    .reduce((a,r)=>a+(r.requesterId===uid?calcP4P(r,r.report?num(r.report.speakerHours):undefined).total:calcP4P(r).member),0);
+  return `<div class="tbl"><table class="t"><thead><tr><th>ประเภท</th><th>สิทธิ์</th><th>ใช้ไปแล้ว (อนุมัติ)</th><th>รออนุมัติ</th><th>คงเหลือ</th></tr></thead><tbody>
+    <tr><td><b>ไปประชุม / อบรม / สัมมนา (ใช้สิทธิ์)</b></td><td class="c">${S().quota}</td><td class="c">${q.used}</td><td class="c">${q.pending}</td><td class="c"><b style="color:${q.left>0?'#0b8a66':'#c62828'}">${q.left}</b></td></tr>
+    <tr><td><b>ไม่นับสิทธิ์</b> <small class="muted">(ได้รับเชิญเป็นวิทยากร / ผู้จัดออกค่าใช้จ่าย)</small></td><td class="c">-</td><td class="c">${noQ}</td><td class="c">-</td><td class="c">-</td></tr>
+    <tr><td><b>คะแนน P4P จากการไปประชุม</b> <small class="muted">(ที่อนุมัติแล้ว)</small></td><td class="c" colspan="4"><b>${money(p4p)}</b> คะแนน</td></tr>
+  </tbody></table></div>`;
+}
+
+/* =====================================================================
+   หน้าแรก
+   ===================================================================== */
+function vHome(){
+  const u=me(),fy=curFY(),c=counts();
+  const mine=db.requests.filter(r=>people(r).some(p=>p.id===u.id));
+  const todo=[];
+  if(u.role==='head'&&c.head)todo.push(`<a href="#/approve">มีคำขอรอหัวหน้ากลุ่มงานอนุมัติ <b>${c.head}</b> รายการ</a>`);
+  if(u.role==='director'&&c.dir)todo.push(`<a href="#/approve">มีคำขอรอผู้อำนวยการอนุมัติ <b>${c.dir}</b> รายการ</a>`);
+  if(u.role==='finance'&&c.fin)todo.push(`<a href="#/finance">มีเรื่องเบิกรอตรวจ <b>${c.fin}</b> รายการ</a>`);
+  db.requests.filter(r=>r.status==='approved'&&people(r).some(p=>p.id===u.id)).forEach(r=>{
+    const left=requiredDaysFor(r,u.id).filter(d=>!checkinOf(r,u.id,d));
+    if(left.includes(todayISO()))todo.push(`<a href="#/r/${r.id}"><b>วันนี้</b> ต้องลงเวลาเข้าประชุม (สแกนหน้า + GPS) — ${esc(r.title)}</a>`);
+  });
+  db.requests.filter(r=>r.requesterId===u.id).forEach(r=>{
+    if(r.status==='returned')todo.push(`<a href="#/r/${r.id}">${esc(r.no)} ถูกส่งกลับให้แก้ไข</a>`);
+    if(r.status==='approved'&&r.returnDate<=todayISO()){const due=addDays(r.returnDate,S().reportDays);todo.push(`<a href="#/r/${r.id}">${esc(r.no)} กลับจากประชุมแล้ว — ส่งสรุปการประชุมภายใน ${fmtD(due)}</a>`)}
+    if(r.status==='reported')todo.push(`<a href="#/r/${r.id}">${esc(r.no)} ส่งสรุปแล้ว — ทำเรื่องเบิกเงินได้</a>`);
+  });
+  $('#view').innerHTML=`
+  <div class="banner">สถิติการไปประชุม ปีงบประมาณ ${fy} <small>(1 ต.ค. ${fy-1} – 30 ก.ย. ${fy})</small></div>
+  ${todo.length?`<div class="card"><h3>📌 สิ่งที่ต้องทำ</h3><ul style="margin:0;padding-left:20px;line-height:2">${todo.map(t=>`<li>${t}</li>`).join('')}</ul></div>`:''}
+  <div class="card"><h2>สิทธิ์ไปประชุมของ ${esc(u.name)}</h2>${quotaTable(u.id,fy)}
+    <div class="acts" style="margin-top:14px"><a class="btn" href="#/new">📝 ยื่นขออนุมัติไปประชุม</a></div></div>
+  <div class="card"><h2>คำขอที่เกี่ยวข้องกับฉัน</h2>${reqTable(mine,'ยังไม่มีคำขอ')}</div>
+  <div class="card"><h2>ขั้นตอนและระเบียบการไปประชุม</h2><ol class="rules" style="margin:0;padding-left:22px">
+    <li>บุคลากรมีสิทธิ์ไปประชุม/อบรม/สัมมนาภายนอก <b>${S().quota} ครั้งต่อปีงบประมาณ</b> (นับตามวันเริ่มประชุม) ไปเป็นกลุ่มนับสิทธิ์ทุกคนในกลุ่ม</li>
+    <li>กรณีได้รับเชิญเป็นวิทยากร หรือผู้จัดออกค่าใช้จ่ายทั้งหมด สามารถขอ <b>ไม่นับสิทธิ์</b> ได้ โดยระบุเหตุผล</li>
+    <li>ยื่นคำขอล่วงหน้า → หัวหน้ากลุ่มงานพิจารณา → ผู้อำนวยการอนุมัติ (หัวหน้ากลุ่มงานยื่นเอง ส่งตรงถึงผู้อำนวยการ)</li>
+    <li>ต้องแนบ <b>หนังสือเชิญ / เอกสารการประชุม</b> หรืออ้างอิง <b>เลขหนังสือ</b> (ภายนอก หรือหนังสือภายในจากระบบสารบรรณ) อย่างน้อย 1 รายการ</li>
+    <li>วันไปประชุม ผู้เดินทางทุกคนต้อง <b>ลงเวลาด้วยการสแกนใบหน้า + GPS</b> ที่ห้องประชุม (รัศมี ${S().gpsRadius} ม. จากพิกัดห้องประชุม) — ผู้เข้าฟังลงทุกวันประชุม วิทยากรอย่างเดียวลงเฉพาะวันบรรยาย</li>
+    <li>บทบาท: <b>เข้าฟังอย่างเดียว</b> นับเต็มวัน · <b>วิทยากร</b> ต้องระบุจำนวนชั่วโมง (P4P วิทยากรอีกระดับ) · <b>วิทยากรและเข้าฟัง</b> ได้ทั้งสองส่วน</li>
+    <li>เมื่อกลับจากประชุม ต้องส่ง <b>สรุปการประชุม</b> ภายใน ${S().reportDays} วัน ก่อนทำเรื่องเบิกค่าใช้จ่าย</li>
+    <li>เบี้ยเลี้ยงคำนวณตามระเบียบกระทรวงการคลัง: นับ 24 ชม. = 1 วัน เศษเกิน 12 ชม. = 1 วัน (ไม่พักแรม เศษเกิน 6 ชม. = ½ วัน) ผู้จัดเลี้ยงอาหาร หักมื้อละ ⅓ ของอัตรา</li>
+    <li>รถยนต์ส่วนตัวเบิกเหมาจ่าย กม. ละ ${S().carRate} บาท · ค่าที่พักจ่ายจริงไม่เกิน ${money(S().lodgingA)} / ${money(S().lodgingB)} บาท/คืน (ประเภท ก / ข)</li>
+  </ol><p class="hint">* อัตราและเกณฑ์ P4P เป็นค่าตัวอย่าง ปรับได้ที่เมนู "ตั้งค่า"</p></div>`;
+}
+
+/* =====================================================================
+   ฟอร์มยื่น / แก้ไข
+   ===================================================================== */
+function vForm(edit){
+  const u=me();
+  if(edit&&(edit.requesterId!==u.id||edit.status!=='returned')){$('#view').innerHTML='<div class="err">แก้ไขได้เฉพาะคำขอของตนเองที่ถูกส่งกลับแก้ไข</div>';return}
+  const t=todayISO();
+  const r=edit?{...edit}:{title:'',kind:'conf',organizer:'',venue:'',province:'',purpose:'',attendMode:'solo',memberIds:[],
+    departDate:addDays(t,30),meetStart:addDays(t,30),meetEnd:addDays(t,31),returnDate:addDays(t,31),travel:'private_car',distanceKm:'',fare:'',sharedCost:'',
+    role:'attend',speakerHours:'',speakDate:'',regFee:'',lodgingRate:'',lodgingNights:'',budgetSource:BUDGET[0],quotaUse:true,quotaReason:'',
+    refs:[{kind:'ext',no:'',date:'',subject:''}],files:[],venueLat:null,venueLng:null};
+  let keepFiles=[...(r.files||[])], newFiles=[];
+  r.venueGeo=r.venueLat!=null?`${r.venueLat}, ${r.venueLng}`:'';
+  const v=k=>esc(r[k]??'');
+  const radio=(name,obj)=>`<div class="opts">${Object.entries(obj).map(([k,t])=>`<label class="opt"><input type="radio" name="${name}" value="${k}" ${r[name]===k?'checked':''}>${t}</label>`).join('')}</div>`;
+  const others=USERS.filter(x=>x.id!==u.id&&x.role!=='director');
+  $('#view').innerHTML=`
+  <div class="banner">${edit?`แก้ไขคำขอ ${esc(edit.no)} และยื่นใหม่`:'ขั้นตอนที่ 1 จาก 6 : 📝 ยื่นขออนุมัติไปประชุม'}</div>
+  ${edit?`<div class="warn"><b>ความเห็นที่ส่งกลับ:</b> ${esc([...edit.history].reverse().find(h=>/ส่งกลับ/.test(h.action))?.comment||'-')}</div>`:''}
+  <form id="f" class="split" autocomplete="off" novalidate>
+   <div class="card">
+    <div class="sec">1. เรื่องที่ขออนุมัติ</div>
+    <div class="grid g2">
+      <div style="grid-column:1/-1"><label class="f">ชื่อการประชุม / หลักสูตร *</label><input class="in" name="title" value="${v('title')}" placeholder="เช่น การประชุมวิชาการประจำปี ..."></div>
+      <div><label class="f">ประเภท</label><select class="in" name="kind">${Object.entries(KIND).map(([k,t])=>`<option value="${k}" ${r.kind===k?'selected':''}>${t}</option>`).join('')}</select></div>
+      <div><label class="f">หน่วยงานผู้จัด *</label><input class="in" name="organizer" value="${v('organizer')}"></div>
+      <div><label class="f">สถานที่จัด *</label><input class="in" name="venue" value="${v('venue')}"></div>
+      <div><label class="f">จังหวัด *</label><input class="in" name="province" value="${v('province')}"></div>
+      <div style="grid-column:1/-1"><label class="f">พิกัดห้องประชุม (lat, lng) — ใช้ตรวจ GPS ตอนลงเวลา</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><input class="in" name="venueGeo" value="${v('venueGeo')}" placeholder="เช่น 16.7480, 100.1920" style="flex:1;min-width:200px">
+        <button type="button" class="btn o s" id="geoHere">📍 ตำแหน่งปัจจุบัน</button><button type="button" class="btn o s" id="geoMap">🗺 ค้นใน Google Maps</button></div>
+        <div class="hint">คลิกขวาที่ห้องประชุมใน Google Maps → คลิกตัวเลขพิกัดเพื่อคัดลอก แล้ววางที่นี่ · ถ้าไม่ระบุ หัวหน้าจะตรวจตำแหน่งจากแผนที่เอง</div></div>
+      <div style="grid-column:1/-1"><label class="f">วัตถุประสงค์ / ความเกี่ยวข้องกับงาน</label><textarea class="in" name="purpose" rows="2">${v('purpose')}</textarea></div>
+    </div>
+    <div class="sec">เอกสารอ้างอิง / หนังสือเชิญ <small class="muted" style="font-weight:300">(แนบไฟล์ หรือระบุเลขหนังสือ อย่างน้อย 1 รายการ)</small></div>
+    <label class="f">อ้างอิงเลขหนังสือ</label>
+    <div id="refs"></div>
+    <button type="button" class="btn o s" id="addRef">＋ เพิ่มเลขหนังสือ</button>
+    <div class="hint">หนังสือภายใน: พิมพ์เลขหนังสือ ระบบจะค้นจากทะเบียนสารบรรณให้ (ลองพิมพ์ <code>พล 0033.102/2580</code>)</div>
+    <label class="f" style="margin-top:12px">แนบไฟล์ (หนังสือเชิญ กำหนดการ โครงการ — PDF / รูปภาพ / Word ไม่เกิน 10 MB ต่อไฟล์)</label>
+    <label class="drop">📎 คลิกเพื่อเลือกไฟล์ หรือถ่ายรูปหนังสือ<input type="file" id="upl" multiple accept=".pdf,image/*,.doc,.docx,.xls,.xlsx" hidden></label>
+    <ul class="files" id="flist"></ul>
+    <div class="sec">2. ผู้เดินทาง</div>
+    ${radio('attendMode',{solo:'👤 ไปคนเดียว',group:'👥 ไปเป็นกลุ่ม'})}
+    <div id="grpBox" style="margin-top:10px"><label class="f">เลือกผู้ร่วมเดินทาง (นับสิทธิ์ของแต่ละคน)</label><div class="opts">${others.map(o=>{
+      const q=quotaOf(o.id,fyOf(r.meetStart||t),edit?.id);
+      return `<label class="opt"><input type="checkbox" name="memberIds" value="${o.id}" ${(r.memberIds||[]).includes(o.id)?'checked':''}>${esc(o.name)} <small class="muted">(${esc(o.dept.replace('กลุ่มงาน',''))} · เหลือ ${q.left})</small></label>`}).join('')}</div></div>
+    <div class="sec">3. กำหนดการ</div>
+    <div class="grid g4">
+      <div><label class="f">วันออกเดินทาง *</label><input class="in" type="date" name="departDate" value="${v('departDate')}"></div>
+      <div><label class="f">วันเริ่มประชุม *</label><input class="in" type="date" name="meetStart" value="${v('meetStart')}"></div>
+      <div><label class="f">วันสิ้นสุดประชุม *</label><input class="in" type="date" name="meetEnd" value="${v('meetEnd')}"></div>
+      <div><label class="f">วันเดินทางกลับ *</label><input class="in" type="date" name="returnDate" value="${v('returnDate')}"></div>
+    </div>
+    <div class="sec">4. การเดินทาง</div>
+    <select class="in" name="travel">${Object.entries(TRAVEL).map(([k,t])=>`<option value="${k}" ${r.travel===k?'selected':''}>${t}</option>`).join('')}</select>
+    <div class="grid g2" style="margin-top:10px">
+      <div id="kmBox"><label class="f">ระยะทางไป–กลับ (กม.)</label><input class="in" type="number" min="0" name="distanceKm" value="${v('distanceKm')}"><div class="hint">เหมาจ่าย กม. ละ ${S().carRate} บาท (เบิกรวม 1 คัน)</div></div>
+      <div id="fareBox"><label class="f">ค่าโดยสารไป–กลับ ต่อคน (บาท)</label><input class="in" type="number" min="0" name="fare" value="${v('fare')}"></div>
+      <div id="sharedBox"><label class="f">ค่าน้ำมัน / ค่ารถรับจ้าง รวม (บาท)</label><input class="in" type="number" min="0" name="sharedCost" value="${v('sharedCost')}"></div>
+    </div>
+    <div class="sec">5. บทบาทในการประชุม</div>
+    ${radio('role',ROLE_MEET)}
+    <div class="hint" id="roleHint"></div>
+    <div id="hrBox" class="grid g2" style="margin-top:10px;max-width:520px">
+      <div><label class="f">จำนวนชั่วโมงที่เป็นวิทยากร *</label><input class="in" type="number" min="0" step="0.5" name="speakerHours" value="${v('speakerHours')}"></div>
+      <div><label class="f">วันที่บรรยาย *</label><input class="in" type="date" name="speakDate" value="${v('speakDate')}"></div>
+    </div>
+    <div class="sec">6. ประมาณการค่าใช้จ่าย (ต่อคน)</div>
+    <div class="grid g3">
+      <div><label class="f">ค่าลงทะเบียน / คน</label><input class="in" type="number" min="0" name="regFee" value="${v('regFee')}"></div>
+      <div><label class="f">ค่าที่พัก / คืน / คน</label><input class="in" type="number" min="0" name="lodgingRate" value="${v('lodgingRate')}"><div class="hint" id="capHint"></div></div>
+      <div><label class="f">จำนวนคืนที่พัก</label><input class="in" type="number" min="0" name="lodgingNights" value="${v('lodgingNights')}" placeholder="อัตโนมัติ"></div>
+      <div><label class="f">แหล่งเงิน</label><select class="in" name="budgetSource">${BUDGET.map(b=>`<option ${r.budgetSource===b?'selected':''}>${b}</option>`).join('')}</select></div>
+    </div>
+    <div class="hint">เบี้ยเลี้ยงคำนวณอัตโนมัติตามจำนวนวันเดินทางและระดับตำแหน่ง</div>
+    <div class="sec">7. การใช้สิทธิ์</div>
+    <label class="opt" style="display:inline-flex"><input type="checkbox" name="quotaUse" ${r.quotaUse?'checked':''}> ใช้สิทธิ์ไปประชุม (${S().quota} ครั้ง/ปีงบประมาณ)</label>
+    <div id="qrBox" style="margin-top:10px"><label class="f">เหตุผลที่ไม่นับสิทธิ์ *</label><input class="in" name="quotaReason" value="${v('quotaReason')}" placeholder="เช่น ได้รับเชิญเป็นวิทยากร ผู้จัดออกค่าใช้จ่ายทั้งหมด"></div>
+   </div>
+   <div class="sticky">
+    <div class="card" id="sumBox"></div>
+    <div id="errBox"></div>
+    <div class="acts"><button class="btn" type="submit" style="flex:1;justify-content:center">📨 ${edit?'บันทึกและยื่นใหม่':'ยื่นขออนุมัติ'}</button>
+      <a class="btn o" href="${edit?'#/r/'+edit.id:'#/home'}">ยกเลิก</a></div>
+   </div>
+  </form>`;
+  const f=$('#f');
+  /* ---- เลขหนังสืออ้างอิง ---- */
+  const refRow=x=>`<div class="refrow"><select class="in rk">${Object.entries(REF_KIND).map(([k,t])=>`<option value="${k}" ${x.kind===k?'selected':''}>${t}</option>`).join('')}</select>
+    <input class="in rn" placeholder="เลขที่หนังสือ เช่น พล 0033.102/2580" value="${esc(x.no)}"><input class="in rd" type="date" value="${esc(x.date)}" title="ลงวันที่">
+    <button type="button" class="xbtn" title="ลบ">✕</button><input class="in rs" placeholder="เรื่อง (ไม่บังคับ)" value="${esc(x.subject)}" style="grid-column:1/-1"><div class="lk"></div></div>`;
+  $('#refs').innerHTML=(r.refs&&r.refs.length?r.refs:[{kind:'ext',no:'',date:'',subject:''}]).map(refRow).join('');
+  $('#addRef').onclick=()=>{$('#refs').insertAdjacentHTML('beforeend',refRow({kind:'int',no:'',date:'',subject:''}));upd()};
+  $('#refs').addEventListener('click',e=>{if(e.target.classList.contains('xbtn')){e.target.closest('.refrow').remove();upd()}});
+  const readRefs=()=>$$('#refs .refrow').map(row=>{
+    const o={kind:$('.rk',row).value,no:$('.rn',row).value.trim(),date:$('.rd',row).value,subject:$('.rs',row).value.trim()};
+    const lk=$('.lk',row);
+    if(o.kind==='int'&&o.no){
+      const d=findInternal(o.no);
+      if(d){o.found=true;if(!o.date){o.date=d.date;$('.rd',row).value=d.date}if(!o.subject){o.subject=d.subject;$('.rs',row).value=d.subject}
+        lk.innerHTML=`<span style="color:#0b8a66">✓ พบในทะเบียนสารบรรณ: ${esc(d.subject)} · ${esc(d.from)} · ${fmtD(d.date)}</span>`}
+      else lk.innerHTML='<span style="color:#b77800">⚠ ไม่พบเลขนี้ในทะเบียนสารบรรณ — ตรวจสอบเลขหนังสือ</span>';
+    }else lk.innerHTML='';
+    return o;
+  }).filter(x=>x.no);
+  /* ---- ไฟล์แนบ ---- */
+  const drawFiles=()=>{
+    $('#flist').innerHTML=[...keepFiles.map((x,i)=>`<li>📄 <a href="#" data-open="${x.id}">${esc(x.name)}</a><small class="muted">${fsize(x.size)}</small><button type="button" class="xbtn" style="height:30px" data-k="${i}">✕</button></li>`),
+      ...newFiles.map((x,i)=>`<li>🆕 <span style="flex:1">${esc(x.name)}</span><small class="muted">${fsize(x.size)}</small><button type="button" class="xbtn" style="height:30px" data-n="${i}">✕</button></li>`)].join('');
+  };
+  $('#flist').addEventListener('click',e=>{const b=e.target.closest('.xbtn');if(!b)return;if(b.dataset.k!=null)keepFiles.splice(+b.dataset.k,1);else newFiles.splice(+b.dataset.n,1);drawFiles();upd()});
+  $('#upl').onchange=e=>{
+    for(const x of e.target.files){if(x.size>MAX_FILE){toast(`${x.name} ใหญ่เกิน 10 MB`);continue}newFiles.push(x)}
+    e.target.value='';drawFiles();upd();
+  };
+  drawFiles();
+  /* ---- พิกัด ---- */
+  $('#geoHere').onclick=()=>{
+    if(!navigator.geolocation){toast('อุปกรณ์นี้ไม่รองรับ GPS');return}
+    toast('กำลังขอตำแหน่ง...');
+    navigator.geolocation.getCurrentPosition(p=>{f.venueGeo.value=`${p.coords.latitude.toFixed(6)}, ${p.coords.longitude.toFixed(6)}`;upd()},
+      e=>toast('ขอตำแหน่งไม่สำเร็จ: '+e.message),{enableHighAccuracy:true,timeout:15000});
+  };
+  $('#geoMap').onclick=()=>window.open('https://www.google.com/maps/search/'+encodeURIComponent(`${f.venue.value} ${f.province.value}`),'_blank');
+  const read=()=>{
+    const fd=new FormData(f),o={};
+    for(const k of ['title','kind','organizer','venue','province','purpose','attendMode','departDate','meetStart','meetEnd','returnDate','travel','role','budgetSource','quotaReason','distanceKm','fare','sharedCost','speakerHours','speakDate','regFee','lodgingRate','lodgingNights','venueGeo'])o[k]=(fd.get(k)??'').toString().trim();
+    o.memberIds=o.attendMode==='group'?fd.getAll('memberIds'):[];
+    o.quotaUse=!!fd.get('quotaUse');
+    const g=o.venueGeo.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);
+    o.venueLat=g?+g[1]:null;o.venueLng=g?+g[2]:null;o.geoBad=!!o.venueGeo&&!g;
+    if(o.role==='attend'){o.speakerHours='';o.speakDate=''}
+    o.refs=readRefs();
+    o.requesterId=edit?edit.requesterId:u.id;o.id=edit?.id;o.status=edit?.status;
+    return o;
+  };
+  const validate=o=>{
+    const e=[];
+    if(!o.title)e.push('กรุณาระบุชื่อการประชุม');
+    if(!o.organizer)e.push('กรุณาระบุหน่วยงานผู้จัด');
+    if(!o.venue||!o.province)e.push('กรุณาระบุสถานที่และจังหวัด');
+    if(!o.departDate||!o.meetStart||!o.meetEnd||!o.returnDate)e.push('กรุณาระบุวันที่ให้ครบ');
+    else{
+      if(o.departDate>o.meetStart)e.push('วันออกเดินทางต้องไม่เกินวันเริ่มประชุม');
+      if(o.meetStart>o.meetEnd)e.push('วันสิ้นสุดประชุมต้องไม่ก่อนวันเริ่มประชุม');
+      if(o.meetEnd>o.returnDate)e.push('วันเดินทางกลับต้องไม่ก่อนวันสิ้นสุดประชุม');
+      if(!edit&&o.departDate<todayISO())e.push('วันออกเดินทางผ่านมาแล้ว');
+    }
+    if(o.attendMode==='group'&&!o.memberIds.length)e.push('ไปเป็นกลุ่ม: กรุณาเลือกผู้ร่วมเดินทางอย่างน้อย 1 คน');
+    if(o.role!=='attend'){
+      if(!(num(o.speakerHours)>0))e.push('เป็นวิทยากร: กรุณาระบุจำนวนชั่วโมงที่เป็นวิทยากร');
+      if(!o.speakDate)e.push('เป็นวิทยากร: กรุณาระบุวันที่บรรยาย');
+      else if(o.meetStart&&o.meetEnd&&(o.speakDate<o.meetStart||o.speakDate>o.meetEnd))e.push('วันที่บรรยายต้องอยู่ในช่วงวันประชุม');
+    }
+    if(!o.refs.length&&!keepFiles.length&&!newFiles.length)e.push('กรุณาแนบหนังสือเชิญ/เอกสาร หรือระบุเลขหนังสืออ้างอิงอย่างน้อย 1 รายการ');
+    if(o.geoBad)e.push('รูปแบบพิกัดไม่ถูกต้อง (ตัวอย่าง 16.7480, 100.1920)');
+    if(!o.quotaUse&&!o.quotaReason)e.push('กรุณาระบุเหตุผลที่ไม่นับสิทธิ์');
+    if(o.quotaUse&&o.meetStart){
+      const fy=fyOf(o.meetStart);
+      people(o).forEach(p=>{const q=quotaOf(p.id,fy,o.id);if(q.left<1)e.push(`${p.name} ใช้สิทธิ์ครบ ${S().quota} ครั้งแล้วในปีงบ ${fy}`)});
+    }
+    return e;
+  };
+  const upd=()=>{
+    const o=read();
+    $('#grpBox').classList.toggle('hide',o.attendMode!=='group');
+    $('#kmBox').classList.toggle('hide',o.travel!=='private_car');
+    $('#fareBox').classList.toggle('hide',!FARE_TRAVEL.includes(o.travel));
+    $('#sharedBox').classList.toggle('hide',!['official_car','other'].includes(o.travel));
+    $('#hrBox').classList.toggle('hide',o.role==='attend');
+    $('#roleHint').textContent={attend:'ผู้เข้าฟังนับเต็มวันทุกวันประชุม และต้องลงเวลา (สแกนหน้า + GPS) ทุกวัน',
+      speaker:'วิทยากรอย่างเดียว: คิด P4P ตามชั่วโมงบรรยาย (อัตราวิทยากร) ลงเวลาเฉพาะวันบรรยาย',
+      both:'วิทยากรและเข้าฟัง: ได้ P4P ทั้งส่วนเข้าฟังเต็มวัน + ชั่วโมงวิทยากร ลงเวลาทุกวันประชุม'}[o.role]||'';
+    $('#qrBox').classList.toggle('hide',o.quotaUse);
+    $('#capHint').textContent=`เพดาน ${money(S().lodgingA)} (ก) / ${money(S().lodgingB)} (ข) บาท/คืน`;
+    const est=calcEst(o),p4p=calcP4P(o),fy=o.meetStart?fyOf(o.meetStart):curFY();
+    const qrows=people(o).map(p=>{const q=quotaOf(p.id,fy,o.id);const after=o.quotaUse?q.left-1:q.left;
+      return `<div class="sum-row"><span>${esc(p.name)}</span><span style="color:${after<0?'#c62828':'inherit'}">${o.quotaUse?`ครั้งที่ ${S().quota-q.left+1}/${S().quota}`:'ไม่นับสิทธิ์'} · เหลือ ${Math.max(after,0)}</span></div>`}).join('');
+    const sumPD=est.rows.reduce((a,x)=>a+x.perDiem,0),sumL=est.rows.reduce((a,x)=>a+x.lodging,0),sumR=est.rows.reduce((a,x)=>a+x.reg,0),sumF=est.rows.reduce((a,x)=>a+x.fare,0);
+    $('#sumBox').innerHTML=`<h3>สรุปคำขอ</h3>
+      <div class="stat"><small>ปีงบประมาณ ${fy} · ${est.days} วัน ${est.nights} คืน · ประชุม ${meetDays(o)} วัน</small></div>
+      <h3 style="margin-top:14px">สิทธิ์ไปประชุม</h3>${qrows}
+      <h3 style="margin-top:14px">ประมาณการค่าใช้จ่าย (${people(o).length} คน)</h3>
+      <div class="sum-row"><span>เบี้ยเลี้ยง</span><span>${money(sumPD)}</span></div>
+      <div class="sum-row"><span>ค่าที่พัก</span><span>${money(sumL)}</span></div>
+      <div class="sum-row"><span>ค่าลงทะเบียน</span><span>${money(sumR)}</span></div>
+      <div class="sum-row"><span>ค่าพาหนะ</span><span>${money(sumF+est.shared)}</span></div>
+      <div class="sum-row tot"><span>รวมขอเบิก</span><span>${money(est.total)} บาท</span></div>
+      ${est.total!==est.gross?`<div class="hint">แหล่งเงิน "${esc(o.budgetSource)}" — ไม่เบิกจากโรงพยาบาล (มูลค่า ${money(est.gross)} บาท)</div>`:''}
+      ${est.rows.some(x=>x.over)?`<div class="warn">ค่าที่พักเกินเพดาน ระบบคิดที่เพดานของแต่ละคน</div>`:''}
+      <h3 style="margin-top:14px">ประมาณการคะแนน P4P</h3>
+      ${p4p.parts.map(x=>`<div class="sum-row"><span>${x.t}</span><span>${money(x.v)}</span></div>`).join('')}
+      <div class="sum-row tot"><span>P4P ของผู้ขอ</span><span style="color:var(--blue-d)">${money(p4p.total)} คะแนน</span></div>
+      ${o.attendMode==='group'&&o.memberIds.length?`<div class="hint">ผู้ร่วมเดินทางได้คนละ ${money(p4p.member)} คะแนน (เข้าร่วม)</div>`:''}`;
+    return o;
+  };
+  f.addEventListener('input',upd);f.addEventListener('change',upd);upd();
+  f.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const o=upd(),errs=validate(o);
+    if(errs.length){$('#errBox').innerHTML=`<div class="err"><b>กรุณาตรวจสอบ</b><ul style="margin:6px 0 0;padding-left:18px">${errs.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`;$('#errBox').scrollIntoView({behavior:'smooth',block:'center'});return}
+    $('#errBox').innerHTML='';
+    let stored;
+    try{stored=await storeFiles(newFiles,'invite')}catch(err){$('#errBox').innerHTML=`<div class="err">บันทึกไฟล์ไม่สำเร็จ: ${esc(err.message)}</div>`;return}
+    if(edit)(edit.files||[]).filter(x=>!keepFiles.some(k=>k.id===x.id)).forEach(x=>IDB.del(x.id).catch(()=>{}));
+    o.files=[...keepFiles,...stored];
+    delete o.venueGeo;delete o.geoBad;
+    const next=me().role==='head'?'pending_dir':'pending_head';
+    let r;
+    if(edit){r=reqById(edit.id);Object.assign(r,o,{status:next});log(r,'แก้ไขและยื่นใหม่')}
+    else{r={...o,id:'r'+Date.now().toString(36),no:nextNo(fyOf(o.meetStart)),createdAt:new Date().toISOString(),status:next,checkins:[],history:[],report:null,claim:null};db.requests.push(r);log(r,'ยื่นคำขออนุมัติ')}
+    save();toast('ยื่นคำขอเรียบร้อย '+r.no);location.hash='#/r/'+r.id;
+  });
+}
+
+/* =====================================================================
+   รายการ
+   ===================================================================== */
+function vMine(){
+  const u=me();
+  const list=db.requests.filter(r=>people(r).some(p=>p.id===u.id)).sort((a,b)=>b.meetStart.localeCompare(a.meetStart));
+  const live=list.filter(r=>!COUNTED_OUT.includes(r.status));
+  const done=live.filter(r=>!PENDING.includes(r.status));
+  const myHours=r=>r.requesterId===u.id&&r.role!=='attend'?(r.report?num(r.report.speakerHours)||num(r.speakerHours):num(r.speakerHours)):0;
+  const myP4P=r=>r.requesterId===u.id?calcP4P(r,r.report?num(r.report.speakerHours)||num(r.speakerHours):undefined).total:calcP4P(r).member;
+  const myPaid=r=>r.status==='paid'?(calcClaim(r,r.claim).rows.find(x=>x.u.id===u.id)?.total||0):0;
+  const myRole=r=>r.requesterId===u.id?ROLE_MEET[r.role]:'ผู้ร่วมเดินทาง (เข้าฟัง)';
+  const fys=[...new Set(list.map(r=>fyOf(r.meetStart)))].sort((a,b)=>b-a);
+  const byFy=fys.map(fy=>{const L=done.filter(r=>fyOf(r.meetStart)===fy);const q=quotaOf(u.id,fy);
+    return {fy,n:L.length,q,days:L.reduce((a,r)=>a+meetDays(r),0),hrs:L.reduce((a,r)=>a+myHours(r),0),p4p:L.reduce((a,r)=>a+myP4P(r),0),paid:L.reduce((a,r)=>a+myPaid(r),0)}});
+  const T=k=>byFy.reduce((a,x)=>a+x[k],0);
+  const ciTxt=r=>{const req=requiredDaysFor(r,u.id),n=req.filter(d=>checkinOf(r,u.id,d)).length;
+    if(['pending_head','pending_dir','returned','rejected','cancelled'].includes(r.status))return '<span class="muted">-</span>';
+    return n===req.length?`<span style="color:#0b8a66">✓ ${n}/${req.length}</span>`:`<span style="color:#b77800">${n}/${req.length}</span>`};
+  $('#view').innerHTML=`
+  <div class="banner">🗂️ ประวัติการไปประชุมของฉัน</div>
+  <div class="card" style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <div class="av" style="width:72px;height:72px;font-size:28px">${esc(initials(u.name))}</div>
+    <div style="flex:1;min-width:220px"><div style="font-size:22px;font-weight:400">${esc(u.name)}</div><div>${esc(u.pos)}</div><div class="muted">${esc(u.dept)} · เบี้ยเลี้ยงประเภท ${u.grade==='B'?'ข':'ก'}</div></div>
+    <div class="grid g4" style="flex:2;min-width:300px">
+      <div class="stat"><small>ไปประชุมทั้งหมด</small><div class="big">${done.length}</div></div>
+      <div class="stat"><small>ชม. วิทยากรรวม</small><div class="big">${money(T('hrs'))}</div></div>
+      <div class="stat"><small>P4P สะสม</small><div class="big">${money(T('p4p'))}</div></div>
+      <div class="stat"><small>เบิกจริงรวม (บาท)</small><div class="big">${money(T('paid'))}</div></div>
+    </div>
+  </div>
+  <div class="card"><h2>สรุปรายปีงบประมาณ</h2><div class="tbl"><table class="t"><thead><tr><th>ปีงบประมาณ</th><th>ไปประชุม (ครั้ง)</th><th>ใช้สิทธิ์ / ${S().quota}</th><th>วันประชุม</th><th>ชม. วิทยากร</th><th>P4P</th><th class="n">เบิกจริง (บาท)</th></tr></thead><tbody>
+    ${byFy.length?byFy.map(x=>`<tr><td class="c"><b>${x.fy}</b></td><td class="c">${x.n}</td><td class="c">${x.q.used}${x.q.pending?` <small class="muted">(+${x.q.pending} รอ)</small>`:''}</td><td class="c">${x.days}</td><td class="c">${money(x.hrs)}</td><td class="c">${money(x.p4p)}</td><td class="n">${money(x.paid)}</td></tr>`).join(''):'<tr><td colspan="7" class="muted">ยังไม่มีประวัติ</td></tr>'}
+  </tbody></table></div><p class="hint">นับเฉพาะรายการที่อนุมัติแล้ว · P4P ใช้ชั่วโมงวิทยากรจริงจากสรุปการประชุม (ถ้ามี)</p></div>
+  <div class="card"><h2>รายการทั้งหมด (${list.length})</h2>${list.length?`<div class="tbl"><table class="t"><thead><tr><th>วันประชุม</th><th>เรื่อง</th><th>บทบาทของฉัน</th><th>ลงเวลา</th><th>สรุป</th><th>เบิก</th><th>P4P</th><th>สถานะ</th></tr></thead><tbody>
+    ${list.map(r=>`<tr class="click" onclick="location.hash='#/r/${r.id}'"><td>${fmtD(r.meetStart)}<br><small class="muted">ปีงบ ${fyOf(r.meetStart)}</small></td>
+      <td>${esc(r.title)}<br><small class="muted">${esc(r.no)} · ${esc(r.province)}${r.quotaUse?'':' · ไม่นับสิทธิ์'}</small></td>
+      <td>${myRole(r)}${myHours(r)?` <b>${myHours(r)} ชม.</b>`:''}</td><td class="c">${ciTxt(r)}</td>
+      <td class="c">${r.report?'✓':'-'}</td><td class="n">${r.status==='paid'?money(myPaid(r)):'-'}</td><td class="c">${COUNTED_OUT.includes(r.status)?'-':money(myP4P(r))}</td><td>${pill(r.status)}</td></tr>`).join('')}
+  </tbody></table></div>`:'<div class="muted">ยังไม่มีคำขอ</div>'}</div>`;
+}
+function vApprove(){
+  const u=me();
+  let list=[],t='';
+  if(u.role==='head'){list=db.requests.filter(r=>r.status==='pending_head'&&user(r.requesterId).dept===u.dept);t=`รอหัวหน้ากลุ่มงานพิจารณา · ${u.dept}`}
+  else if(u.role==='director'){list=db.requests.filter(r=>r.status==='pending_dir');t='รอผู้อำนวยการอนุมัติ'}
+  else{$('#view').innerHTML='<div class="err">เมนูนี้สำหรับหัวหน้ากลุ่มงาน / ผู้อำนวยการ</div>';return}
+  const done=db.requests.filter(r=>r.history.some(h=>h.by===u.id&&h.role===u.role&&h.role!=='staff'));
+  $('#view').innerHTML=`<div class="banner">✅ ${t}</div><div class="card"><h2>รอดำเนินการ (${list.length})</h2>${reqTable(list,'ไม่มีคำขอค้าง')}</div>
+    <div class="card"><h2>ที่ฉันพิจารณาแล้ว</h2>${reqTable(done)}</div>`;
+}
+function vFinance(){
+  const list=db.requests.filter(r=>r.status==='claim_pending');
+  const paid=db.requests.filter(r=>r.status==='paid');
+  $('#view').innerHTML=`<div class="banner">💰 รอตรวจเบิกค่าใช้จ่าย</div><div class="card"><h2>รอตรวจ (${list.length})</h2>${reqTable(list,'ไม่มีเรื่องเบิกค้าง')}</div>
+    <div class="card"><h2>เบิกจ่ายแล้ว</h2>${reqTable(paid)}</div>`;
+}
+
+/* =====================================================================
+   รายละเอียด + การอนุมัติ
+   ===================================================================== */
+function vDetail(r){
+  if(!r){$('#view').innerHTML='<div class="err">ไม่พบคำขอ</div>';return}
+  const u=me(),req=user(r.requesterId),est=calcEst(r),p4p=calcP4P(r),fy=fyOf(r.meetStart);
+  const isOwner=u.id===r.requesterId;
+  const canHead=u.role==='head'&&r.status==='pending_head'&&req.dept===u.dept;
+  const canDir=u.role==='director'&&r.status==='pending_dir';
+  const canFin=u.role==='finance'&&r.status==='claim_pending';
+  const travelTxt=TRAVEL[r.travel]+(r.travel==='private_car'?` (ไป–กลับ ${money(r.distanceKm)} กม.)`:'');
+  const acts=[];
+  if(canHead||canDir){
+    acts.push(`<div style="width:100%"><label class="f">ความเห็น / ข้อสั่งการ</label><textarea class="in" id="cmt" rows="2" placeholder="${canHead?'เห็นควรอนุมัติ...':'อนุมัติ...'}"></textarea></div>`);
+    acts.push(`<button class="btn g" onclick="decide('${r.id}','ok')">✓ ${canHead?'เห็นชอบ ส่ง ผอ.':'อนุมัติ'}</button>`);
+    acts.push(`<button class="btn y" onclick="decide('${r.id}','return')">↩ ส่งกลับแก้ไข</button>`);
+    acts.push(`<button class="btn r" onclick="decide('${r.id}','reject')">✕ ไม่อนุมัติ</button>`);
+  }
+  const isPart=people(r).some(p=>p.id===u.id);
+  if(isPart&&r.status==='approved'&&!checkinDone(r,u.id))acts.push(`<button class="btn g" onclick="checkinForm('${r.id}')">📷 ลงเวลาเข้าประชุม (สแกนหน้า + GPS)</button>`);
+  if(isOwner){
+    if(r.status==='returned')acts.push(`<a class="btn" href="#/edit/${r.id}">✎ แก้ไขและยื่นใหม่</a>`);
+    if(r.status==='approved')acts.push(`<button class="btn" onclick="reportForm('${r.id}')">📄 ทำหนังสือสรุปการประชุม</button>`);
+    if(r.status==='reported'){acts.push(`<button class="btn" onclick="claimForm('${r.id}')">💵 ทำเรื่องเบิกเงิน</button>`);acts.push(`<button class="btn o" onclick="closeNoClaim('${r.id}')">ปิดเรื่อง (ไม่เบิก)</button>`)}
+    if(['pending_head','pending_dir','returned','approved'].includes(r.status))acts.push(`<button class="btn o" onclick="cancelReq('${r.id}')">ยกเลิกคำขอ</button>`);
+  }
+  if(canFin){
+    acts.push(`<button class="btn g" onclick="finPay('${r.id}')">✓ อนุมัติจ่าย</button>`);
+    acts.push(`<button class="btn y" onclick="finReturn('${r.id}')">↩ ส่งกลับแก้ไขใบเบิก</button>`);
+  }
+  const docs=[`<button class="btn o s" onclick="printMemo('${r.id}')">🖨 บันทึกข้อความขออนุมัติ</button>`];
+  if(r.report)docs.push(`<button class="btn o s" onclick="printReport('${r.id}')">🖨 รายงานสรุปการประชุม</button>`);
+  if(r.claim)docs.push(`<button class="btn o s" onclick="printClaim('${r.id}')">🖨 หลักฐานการเบิก (แบบ 8708)</button>`);
+  let notice='';
+  if(r.status==='approved'){
+    const due=addDays(r.returnDate,S().reportDays);
+    notice=r.returnDate>todayISO()?`<div class="ok">อนุมัติแล้ว — เดินทาง ${fmtD(r.departDate)} กลับ ${fmtD(r.returnDate)} · วันประชุมให้ผู้เดินทางทุกคนลงเวลา (สแกนหน้า + GPS) ที่ห้องประชุม · เมื่อกลับมาให้ส่งสรุปการประชุมภายใน ${fmtD(due)}</div>`
+      :`<div class="warn">กลับจากประชุมแล้ว — กรุณาส่งสรุปการประชุมภายใน ${fmtD(due)}${todayISO()>due?' <b>(เลยกำหนดแล้ว)</b>':''}</div>`;
+  }
+  const cl=r.claim?calcClaim(r,r.claim):null;
+  $('#view').innerHTML=`
+  <div class="banner">${esc(r.no)} · ${esc(r.title)} ${pill(r.status)}</div>
+  <div class="card">${stepper(r)}</div>
+  ${notice}
+  <div class="split">
+   <div>
+    <div class="card"><h2>รายละเอียดคำขอ</h2><dl class="kv">
+      <dt>ผู้ขอ</dt><dd>${esc(req.name)} · ${esc(req.pos)}<br><small class="muted">${esc(req.dept)}</small></dd>
+      <dt>ยื่นเมื่อ</dt><dd>${fmtDT(r.createdAt)}</dd>
+      <dt>ประเภท</dt><dd>${KIND[r.kind]} · ${ROLE_MEET[r.role]}${r.role!=='attend'?` <b>${r.speakerHours} ชม.</b> (บรรยาย ${fmtD(r.speakDate)})`:''}</dd>
+      <dt>ผู้จัด</dt><dd>${esc(r.organizer)}</dd>
+      <dt>สถานที่</dt><dd>${esc(r.venue)} จ.${esc(r.province)}${r.venueLat!=null?` · ${mapLink(r.venueLat,r.venueLng,'📍 พิกัดห้องประชุม')}`:' <small class="muted">(ไม่ได้ระบุพิกัด)</small>'}</dd>
+      <dt>วันประชุม</dt><dd>${range(r.meetStart,r.meetEnd)} (${meetDays(r)} วัน)</dd>
+      <dt>ไป – กลับ</dt><dd>ออกเดินทาง ${fmtD(r.departDate)} · กลับ ${fmtD(r.returnDate)} (${est.days} วัน ${est.nights} คืน)</dd>
+      <dt>การเดินทาง</dt><dd>${esc(travelTxt)}</dd>
+      <dt>ผู้เดินทาง</dt><dd>${r.attendMode==='group'?`ไปเป็นกลุ่ม ${people(r).length} คน`:'ไปคนเดียว'}<br>${people(r).map(p=>`• ${esc(p.name)} <small class="muted">${esc(p.pos)}</small>`).join('<br>')}</dd>
+      <dt>การใช้สิทธิ์</dt><dd>${r.quotaUse?`ใช้สิทธิ์ปีงบ ${fy} (${S().quota} ครั้ง/ปี)`:`ไม่นับสิทธิ์ — ${esc(r.quotaReason)}`}</dd>
+      ${r.purpose?`<dt>วัตถุประสงค์</dt><dd>${esc(r.purpose)}</dd>`:''}
+    </dl></div>
+    <div class="card"><h2>📎 เอกสารอ้างอิง / หนังสือเชิญ</h2>
+      ${(r.refs||[]).length?`<ul style="margin:0 0 8px;padding-left:20px;line-height:1.9">${r.refs.map(x=>{const d=x.kind==='int'?findInternal(x.no):null;
+        return `<li>${REF_KIND[x.kind]} ที่ <b>${esc(x.no)}</b>${x.date?` ลงวันที่ ${fmtD(x.date)}`:''}${x.subject?` — ${esc(x.subject)}`:''}
+        ${x.kind==='int'?(d?` <span class="pill p-ok">พบในสารบรรณ</span>`:` <span class="pill p-ret">ไม่พบในสารบรรณ</span>`):''}</li>`}).join('')}</ul>`:''}
+      ${(r.files||[]).length?`<ul class="files">${r.files.map(x=>`<li>📄 <a href="#" data-open="${x.id}">${esc(x.name)}</a><small class="muted">${fsize(x.size)}</small></li>`).join('')}</ul>`:''}
+      ${!(r.refs||[]).length&&!(r.files||[]).length?'<div class="muted">ไม่มีเอกสารแนบ</div>':''}</div>
+    ${ciCard(r)}
+    <div class="card"><h2>ประมาณการค่าใช้จ่าย</h2><div class="tbl"><table class="t"><thead><tr><th>ผู้เดินทาง</th><th class="n">เบี้ยเลี้ยง</th><th class="n">ที่พัก</th><th class="n">ลงทะเบียน</th><th class="n">ค่าโดยสาร</th><th class="n">รวม</th></tr></thead><tbody>
+      ${est.rows.map(x=>`<tr><td>${esc(x.u.name)}<br><small class="muted">${est.days} วัน × ${perDiemRate(x.u)}${x.over?` · ที่พักคิดเพดาน ${money(x.cap)}`:''}</small></td><td class="n">${money(x.perDiem)}</td><td class="n">${money(x.lodging)}</td><td class="n">${money(x.reg)}</td><td class="n">${money(x.fare)}</td><td class="n">${money(x.total)}</td></tr>`).join('')}
+      ${est.shared?`<tr><td colspan="5">${r.travel==='private_car'?`ค่าพาหนะรถยนต์ส่วนตัว ${money(r.distanceKm)} กม. × ${S().carRate}`:'ค่าน้ำมัน / ค่ารถ (รวม)'}</td><td class="n">${money(est.shared)}</td></tr>`:''}
+      <tr class="tot"><td colspan="5">รวมประมาณการ ${est.total!==est.gross?`<small>(${esc(r.budgetSource)} — ไม่เบิกจาก รพ.)</small>`:`<small>(${esc(r.budgetSource)})</small>`}</td><td class="n">${money(est.gross)}</td></tr>
+    </tbody></table></div></div>
+    ${r.report?`<div class="card"><h2>📄 สรุปการประชุม <small class="muted" style="font-size:13px">ส่งเมื่อ ${fmtDT(r.report.at)}</small></h2><dl class="kv">
+      <dt>สาระสำคัญ</dt><dd style="white-space:pre-wrap">${esc(r.report.summary)}</dd>
+      <dt>ประโยชน์ที่ได้รับ</dt><dd style="white-space:pre-wrap">${esc(r.report.benefit)}</dd>
+      <dt>การนำไปใช้</dt><dd style="white-space:pre-wrap">${esc(r.report.apply)}</dd>
+      <dt>การถ่ายทอด</dt><dd style="white-space:pre-wrap">${esc(r.report.share||'-')}</dd>
+      <dt>ใบประกาศ</dt><dd>${r.report.cert?'ได้รับ':'ไม่ได้รับ / ไม่มี'}</dd></dl></div>`:''}
+    ${cl?`<div class="card"><h2>💵 รายการเบิกจริง <small class="muted" style="font-size:13px">ยื่นเมื่อ ${fmtDT(r.claim.at)}</small></h2>
+      <p class="muted" style="margin-top:0">ออก ${fmtDT(r.claim.departDT)} – กลับ ${fmtDT(r.claim.returnDT)} · เบี้ยเลี้ยง ${cl.days} วัน${num(r.claim.meals)?` · หักมื้ออาหาร ${r.claim.meals} มื้อ`:''}</p>
+      <div class="tbl"><table class="t"><thead><tr><th>ผู้เดินทาง</th><th class="n">เบี้ยเลี้ยง</th><th class="n">ที่พัก</th><th class="n">พาหนะ</th><th class="n">ลงทะเบียน</th><th class="n">อื่น ๆ</th><th class="n">รวม</th></tr></thead><tbody>
+      ${cl.rows.map(x=>`<tr><td>${esc(x.u.name)}</td><td class="n">${money(x.perDiem)}</td><td class="n">${money(x.lodging)}</td><td class="n">${money(x.transport)}</td><td class="n">${money(x.reg)}</td><td class="n">${money(x.other)}</td><td class="n">${money(x.total)}</td></tr>`).join('')}
+      <tr class="tot"><td colspan="6">รวมเบิกจริง (${bahtText(cl.total)})</td><td class="n">${money(cl.total)}</td></tr></tbody></table></div>
+      ${(r.claim.files||[]).length?`<ul class="files">${r.claim.files.map(x=>`<li>🧾 <a href="#" data-open="${x.id}">${esc(x.name)}</a><small class="muted">${fsize(x.size)}</small></li>`).join('')}</ul>`:''}
+      <p class="hint">เทียบประมาณการ ${money(est.total)} บาท → ${cl.total<=est.total?'ไม่เกิน':'<b style="color:#c62828">เกิน</b>'}ประมาณการ ${money(Math.abs(est.total-cl.total))} บาท${r.claim.voucher?` · ใบสำคัญจ่าย ${esc(r.claim.voucher)}`:''}</p></div>`:''}
+   </div>
+   <div class="sticky">
+    <div class="card"><h3>คะแนน P4P ${r.report?'(จริง)':'(ประมาณการ)'}</h3>
+      ${calcP4P(r,r.report?num(r.report.speakerHours)||num(r.speakerHours):undefined).parts.map(x=>`<div class="sum-row"><span>${x.t}</span><span>${money(x.v)}</span></div>`).join('')}
+      <div class="sum-row tot"><span>${esc(req.name)}</span><span style="color:var(--blue-d)">${money(calcP4P(r,r.report?num(r.report.speakerHours)||num(r.speakerHours):undefined).total)}</span></div>
+      ${r.attendMode==='group'?`<div class="hint">ผู้ร่วมเดินทางคนละ ${money(p4p.member)} คะแนน</div>`:''}</div>
+    ${acts.length?`<div class="card"><h3>ดำเนินการ</h3><div class="acts">${acts.join('')}</div></div>`:''}
+    <div class="card"><h3>เอกสาร</h3><div class="acts">${docs.join('')}</div></div>
+    <div class="card"><h3>ประวัติการดำเนินการ</h3><ul class="tl">${r.history.map(h=>`<li><b style="font-weight:400">${esc(h.action)}</b><br><small>${esc(user(h.by)?.name)} · ${fmtDT(h.at)}</small>${h.comment?`<div style="font-size:13.5px;margin-top:3px">“${esc(h.comment)}”</div>`:''}</li>`).join('')}</ul></div>
+   </div>
+  </div>`;
+  hydrate($('#view'));
+}
+function ciCard(r){
+  if(['pending_head','pending_dir','returned','rejected'].includes(r.status))return '';
+  const rows=[];
+  people(r).forEach(p=>requiredDaysFor(r,p.id).forEach(d=>{
+    const c=checkinOf(r,p.id,d);
+    rows.push(`<tr><td>${esc(p.name)}</td><td>${fmtD(d)}${p.id===r.requesterId&&r.role!=='attend'&&d===r.speakDate?' <small class="muted">(วันบรรยาย)</small>':''}</td>
+     ${c?`<td class="c">${c.photoId?`<img class="thumb" data-fid="${c.photoId}" data-open="${c.photoId}" alt="ภาพสแกนหน้า">`:'<span class="muted">-</span>'}</td>
+       <td>${new Date(c.at).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})} น.${c.demo?' <span class="pill p-gray">สาธิต</span>':''}</td>
+       <td>${mapLink(c.lat,c.lng,`${c.lat.toFixed(5)}, ${c.lng.toFixed(5)}`)}<br><small class="muted">±${Math.round(c.acc)} ม.</small></td>
+       <td>${c.dist==null?'<span class="pill p-wait">ไม่มีพิกัดอ้างอิง</span>':c.inRange?`<span class="pill p-ok">✓ ในที่ประชุม ${fmtDist(c.dist)}</span>`:`<span class="pill p-bad">ห่าง ${fmtDist(c.dist)}</span>`}${c.note?`<br><small>“${esc(c.note)}”</small>`:''}</td>`
+      :`<td colspan="4" class="muted">ยังไม่ลงเวลา</td>`}</tr>`);
+  }));
+  const ex=r.report&&r.report.ciReason?`<div class="warn">เหตุผลที่ลงเวลาไม่ครบ: ${esc(r.report.ciReason)}</div>`:'';
+  return `<div class="card"><h2>📷 ลงเวลาเข้าประชุม (สแกนหน้า + GPS)</h2>${ex}<div class="tbl"><table class="t"><thead><tr><th>ผู้เดินทาง</th><th>วันประชุม</th><th>ใบหน้า</th><th>เวลา</th><th>GPS</th><th>ตรวจตำแหน่ง</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>
+    <p class="hint">รัศมีที่ยอมรับ ${S().gpsRadius} ม. จากพิกัดห้องประชุม · ภาพใบหน้าใช้เป็นหลักฐานให้หัวหน้า/การเงินตรวจ</p></div>`;
+}
+/* ---------- หน้าจอสแกนหน้า + GPS ---------- */
+window.checkinForm=id=>{
+  const r=reqById(id),u=me(),t=todayISO();
+  const days=requiredDaysFor(r,u.id),left=days.filter(d=>!checkinOf(r,u.id,d));
+  if(!left.length){toast('ลงเวลาครบแล้ว');return}
+  const st={stream:null,blob:null,face:null,pos:null};
+  modal('📷 ลงเวลาเข้าประชุม',`
+    <div class="grid g2">
+      <div><label class="f">วันประชุม</label><select class="in" id="ciDay">${left.map(d=>`<option value="${d}" ${d===t?'selected':''}>${fmtDL(d)}${d===t?' (วันนี้)':''}</option>`).join('')}</select></div>
+      <div><label class="f">สถานที่</label><div style="padding-top:8px">${esc(r.venue)} จ.${esc(r.province)}</div></div>
+    </div>
+    <div id="ciDayWarn"></div>
+    <div class="grid g2" style="margin-top:12px">
+      <div><h3>1. สแกนใบหน้า</h3>
+        <div class="cam" id="ciCam"><video id="ciVid" playsinline muted autoplay></video><div class="oval"></div><div class="msg" id="ciMsg">กำลังเปิดกล้อง...</div></div>
+        <div class="acts" style="margin-top:8px"><button type="button" class="btn s" id="ciShot">📸 สแกน / ถ่ายภาพ</button>
+          <label class="btn o s">📱 กล้องมือถือ / เลือกรูป<input type="file" accept="image/*" capture="user" id="ciFile" hidden></label>
+          <button type="button" class="btn o s hide" id="ciRe">↻ ถ่ายใหม่</button></div></div>
+      <div><h3>2. ตำแหน่ง GPS</h3><div id="ciGps" class="stat">กำลังขอตำแหน่ง...</div>
+        <button type="button" class="btn o s" id="ciGpsBtn" style="margin-top:8px">↻ ขอตำแหน่งใหม่</button>
+        <div id="ciNoteBox" class="hide" style="margin-top:10px"><label class="f">อยู่นอกรัศมี — ระบุเหตุผล *</label><input class="in" id="ciNote" placeholder="เช่น ห้องประชุมย่อยอยู่อีกอาคาร"></div></div>
+    </div>`,
+    [{t:'✓ บันทึกลงเวลา',cls:'g',fn:()=>{
+      if(!st.blob){toast('กรุณาสแกนใบหน้าก่อน');return false}
+      if(st.face===false){toast('ไม่พบใบหน้าในภาพ กรุณาถ่ายใหม่');return false}
+      if(!st.pos){toast('ยังไม่ได้ตำแหน่ง GPS');return false}
+      const g=geoEval();
+      if(g.dist!=null&&!g.inRange&&!$('#ciNote').value.trim()){toast('อยู่นอกรัศมี กรุณาระบุเหตุผล');return false}
+      const day=$('#ciDay').value,photoId=fid();
+      const rec={id:fid(),uid:u.id,day,at:new Date().toISOString(),lat:st.pos.latitude,lng:st.pos.longitude,acc:st.pos.accuracy,dist:g.dist,inRange:g.inRange,
+        photoId,face:st.face,note:$('#ciNote').value.trim(),demo:day!==t};
+      IDB.put(photoId,st.blob).then(()=>{
+        r.checkins=r.checkins||[];r.checkins.push(rec);
+        log(r,`ลงเวลาเข้าประชุม ${fmtD(day)}`,`${u.name} · ${g.dist==null?'ไม่มีพิกัดอ้างอิง':g.inRange?'อยู่ในที่ประชุม':'นอกรัศมี '+fmtDist(g.dist)}${rec.demo?' · โหมดสาธิต (ไม่ใช่วันประชุม)':''}`);
+        closeModal();commit(r,'ลงเวลาเรียบร้อย');
+      }).catch(e=>toast('บันทึกภาพไม่สำเร็จ: '+e.message));
+      return false;
+    }}],
+    ()=>{if(st.stream)st.stream.getTracks().forEach(x=>x.stop())});
+  const dayWarn=()=>{$('#ciDayWarn').innerHTML=$('#ciDay').value!==t?'<div class="warn">วันนี้ไม่ใช่วันประชุมที่เลือก — ระบบจริงจะลงเวลาได้เฉพาะวันประชุม (โหมดสาธิตอนุญาต และติดป้าย "สาธิต")</div>':''};
+  $('#ciDay').onchange=dayWarn;dayWarn();
+  /* กล้อง */
+  const vid=$('#ciVid'),msg=t=>{const m=$('#ciMsg');if(m)m.textContent=t};
+  const startCam=async()=>{
+    try{const s=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640}},audio:false});
+      if(st.blob||!$('#modal').classList.contains('on')){s.getTracks().forEach(x=>x.stop());return} // เลือกรูปไปแล้ว / ปิดหน้าต่างแล้ว
+      st.stream=s;vid.srcObject=s;msg('จัดใบหน้าให้อยู่ในกรอบ แล้วกด "สแกน"')}
+    catch(e){msg('เปิดกล้องไม่ได้ — ใช้ปุ่ม "กล้องมือถือ / เลือกรูป" แทน')}
+  };
+  const setPhoto=async(canvas)=>{
+    st.blob=await new Promise(res=>canvas.toBlob(res,'image/jpeg',.82));
+    st.face=null;
+    if('FaceDetector' in window){try{const fs=await new FaceDetector({fastMode:true}).detect(canvas);st.face=fs.length>0}catch(e){}}
+    $('#ciCam').innerHTML=`<img src="${URL.createObjectURL(st.blob)}" alt="ภาพสแกน"><div class="oval"></div><div class="msg">${st.face===false?'⚠ ไม่พบใบหน้า กรุณาถ่ายใหม่':st.face?'✓ ตรวจพบใบหน้า':'✓ ถ่ายภาพแล้ว'}</div>`;
+    if(st.stream){st.stream.getTracks().forEach(x=>x.stop());st.stream=null}
+    $('#ciShot').classList.add('hide');$('#ciRe').classList.remove('hide');
+  };
+  const toCanvas=(src,w,h)=>{const s=Math.min(1,480/Math.max(w,h)),c=document.createElement('canvas');c.width=Math.round(w*s);c.height=Math.round(h*s);c.getContext('2d').drawImage(src,0,0,c.width,c.height);return c};
+  $('#ciShot').onclick=()=>{if(!vid.videoWidth){toast('กล้องยังไม่พร้อม');return}setPhoto(toCanvas(vid,vid.videoWidth,vid.videoHeight))};
+  $('#ciFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>setPhoto(toCanvas(im,im.naturalWidth,im.naturalHeight));im.src=URL.createObjectURL(f)};
+  $('#ciRe').onclick=()=>{st.blob=null;st.face=null;$('#ciCam').innerHTML='<video id="ciVid" playsinline muted autoplay></video><div class="oval"></div><div class="msg" id="ciMsg">กำลังเปิดกล้อง...</div>';
+    $('#ciShot').classList.remove('hide');$('#ciRe').classList.add('hide');
+    const v2=$('#ciVid');$('#ciShot').onclick=()=>{if(!v2.videoWidth){toast('กล้องยังไม่พร้อม');return}setPhoto(toCanvas(v2,v2.videoWidth,v2.videoHeight))};
+    navigator.mediaDevices?.getUserMedia({video:{facingMode:'user'}}).then(s=>{st.stream=s;v2.srcObject=s;$('#ciMsg').textContent='จัดใบหน้าให้อยู่ในกรอบ แล้วกด "สแกน"'}).catch(()=>$('#ciMsg').textContent='เปิดกล้องไม่ได้');
+  };
+  if(navigator.mediaDevices?.getUserMedia)startCam();else msg('เบราว์เซอร์ไม่รองรับกล้อง — ใช้ปุ่มเลือกรูป');
+  /* GPS */
+  const geoEval=()=>{
+    if(!st.pos||r.venueLat==null)return {dist:null,inRange:null};
+    const d=distM(st.pos.latitude,st.pos.longitude,r.venueLat,r.venueLng);return {dist:d,inRange:d<=S().gpsRadius};
+  };
+  const getGps=()=>{
+    $('#ciGps').textContent='กำลังขอตำแหน่ง...';
+    if(!navigator.geolocation){$('#ciGps').innerHTML='<span style="color:#c62828">อุปกรณ์ไม่รองรับ GPS</span>';return}
+    navigator.geolocation.getCurrentPosition(p=>{
+      st.pos=p.coords;const g=geoEval();
+      $('#ciGps').innerHTML=`<div>${mapLink(p.coords.latitude,p.coords.longitude,`${p.coords.latitude.toFixed(5)}, ${p.coords.longitude.toFixed(5)}`)} <small class="muted">±${Math.round(p.coords.accuracy)} ม.</small></div>
+        <div style="margin-top:6px">${g.dist==null?'<span class="pill p-wait">คำขอนี้ไม่มีพิกัดห้องประชุม — บันทึกตำแหน่งให้หัวหน้าตรวจ</span>':g.inRange?`<span class="pill p-ok">✓ อยู่ในที่ประชุม (ห่าง ${fmtDist(g.dist)})</span>`:`<span class="pill p-bad">อยู่นอกรัศมี ${S().gpsRadius} ม. (ห่าง ${fmtDist(g.dist)})</span>`}</div>
+        ${p.coords.accuracy>200?'<div class="hint">ความแม่นยำต่ำ — ลองเปิด GPS / ออกไปใกล้หน้าต่างแล้วขอใหม่</div>':''}`;
+      $('#ciNoteBox').classList.toggle('hide',!(g.dist!=null&&!g.inRange));
+    },e=>{st.pos=null;$('#ciGps').innerHTML=`<span style="color:#c62828">ขอตำแหน่งไม่สำเร็จ: ${esc(e.message)}</span><div class="hint">อนุญาตการเข้าถึงตำแหน่งในเบราว์เซอร์ แล้วกด "ขอตำแหน่งใหม่"</div>`},
+    {enableHighAccuracy:true,timeout:20000,maximumAge:0});
+  };
+  $('#ciGpsBtn').onclick=getGps;getGps();
+};
+function commit(r,msg){save();toast(msg);vDetail(r);renderNav()}
+window.decide=(id,act)=>{
+  const r=reqById(id),u=me(),c=$('#cmt').value.trim();
+  if(act!=='ok'&&!c){toast('กรุณาระบุเหตุผลในช่องความเห็น');$('#cmt').focus();return}
+  if(act==='ok'){
+    if(u.role==='head'){r.status='pending_dir';log(r,'หัวหน้ากลุ่มงานเห็นชอบ',c)}
+    else{r.status='approved';log(r,'ผู้อำนวยการอนุมัติ',c)}
+  }else if(act==='return'){r.status='returned';log(r,(u.role==='head'?'หัวหน้ากลุ่มงาน':'ผู้อำนวยการ')+'ส่งกลับแก้ไข',c)}
+  else{r.status='rejected';log(r,(u.role==='head'?'หัวหน้ากลุ่มงาน':'ผู้อำนวยการ')+'ไม่อนุมัติ',c)}
+  commit(r,'บันทึกผลการพิจารณาแล้ว');
+};
+window.cancelReq=id=>{
+  const r=reqById(id);
+  modal('ยกเลิกคำขอ',`<p>ยกเลิก ${esc(r.no)} และคืนสิทธิ์ไปประชุม?</p><label class="f">เหตุผล</label><input class="in" id="cr">`,
+    [{t:'ยืนยันยกเลิก',cls:'r',fn:()=>{r.status='cancelled';log(r,'ผู้ขอยกเลิกคำขอ',$('#cr').value);commit(r,'ยกเลิกแล้ว')}}]);
+};
+window.reportForm=id=>{
+  const r=reqById(id),x=r.report||{};
+  if(r.meetStart>todayISO())toast('หมายเหตุ: ยังไม่ถึงวันประชุม (โหมดสาธิตอนุญาตให้ทำได้)');
+  const miss=[];people(r).forEach(p=>requiredDaysFor(r,p.id).forEach(d=>{if(!checkinOf(r,p.id,d))miss.push(`${p.name} (${fmtD(d)})`)}));
+  modal('📄 หนังสือสรุปการประชุม / รายงานการเดินทางไปราชการ',`
+    <p class="muted" style="margin-top:0">${esc(r.title)} · ${range(r.meetStart,r.meetEnd)}</p>
+    ${miss.length?`<div class="warn"><b>ลงเวลาเข้าประชุม (สแกนหน้า + GPS) ยังไม่ครบ:</b> ${miss.map(esc).join(', ')}
+      <label class="f" style="margin-top:8px">ระบุเหตุผลที่ลงเวลาไม่ครบ * (หัวหน้า/การเงินจะเห็น)</label><input class="in" id="rpCi" value="${esc(x.ciReason)}"></div>`:'<div class="ok">✓ ลงเวลาเข้าประชุมครบทุกวัน</div>'}
+    <label class="f">สาระสำคัญของการประชุม *</label><textarea class="in" id="rp1" rows="4">${esc(x.summary)}</textarea>
+    <label class="f" style="margin-top:10px">ประโยชน์ที่ได้รับต่อตนเองและหน่วยงาน *</label><textarea class="in" id="rp2" rows="3">${esc(x.benefit)}</textarea>
+    <label class="f" style="margin-top:10px">การนำความรู้ไปใช้ / ข้อเสนอแนะ *</label><textarea class="in" id="rp3" rows="3">${esc(x.apply)}</textarea>
+    <label class="f" style="margin-top:10px">แผนการถ่ายทอดความรู้ (วันที่ / รูปแบบ)</label><input class="in" id="rp4" value="${esc(x.share)}">
+    <div class="grid g2" style="margin-top:10px">
+      ${r.role!=='attend'?`<div><label class="f">ชั่วโมงวิทยากรจริง</label><input class="in" type="number" step="0.5" id="rp5" value="${esc(x.speakerHours??r.speakerHours)}"></div>`:''}
+      <label class="opt" style="align-self:end"><input type="checkbox" id="rp6" ${x.cert?'checked':''}> ได้รับใบประกาศ / วุฒิบัตร</label>
+    </div>`,
+    [{t:'ส่งสรุปการประชุม',fn:()=>{
+      const v=k=>$(k).value.trim();
+      if(!v('#rp1')||!v('#rp2')||!v('#rp3')){toast('กรุณากรอกช่องที่มี * ให้ครบ');return false}
+      if(miss.length&&!v('#rpCi')){toast('กรุณาระบุเหตุผลที่ลงเวลาไม่ครบ');return false}
+      r.report={at:new Date().toISOString(),summary:v('#rp1'),benefit:v('#rp2'),apply:v('#rp3'),share:v('#rp4'),speakerHours:$('#rp5')?num($('#rp5').value):0,cert:$('#rp6').checked,ciReason:miss.length?v('#rpCi'):''};
+      r.status='reported';log(r,'ส่งสรุปการประชุม');commit(r,'ส่งสรุปการประชุมแล้ว');
+    }}]);
+};
+const DOCS={invite:'หนังสือเชิญ / ตารางการประชุม',report:'รายงานสรุปการประชุม',receiptReg:'ใบเสร็จค่าลงทะเบียน',receiptHotel:'ใบเสร็จค่าที่พัก (Folio)',ticket:'ใบเสร็จ / กากตั๋วโดยสาร / Boarding pass',fuel:'ใบเสร็จค่าน้ำมัน / ค่ารถรับจ้าง'};
+window.claimForm=id=>{
+  const r=reqById(id),est=calcEst(r),c=r.claim||{};
+  const sumL=est.rows.reduce((a,x)=>a+x.lodging,0),sumR=est.rows.reduce((a,x)=>a+x.reg,0),sumF=est.rows.reduce((a,x)=>a+x.fare,0)+est.shared;
+  const dv=(k,d)=>esc(c[k]??d);
+  modal('💵 ทำเรื่องเบิกค่าใช้จ่ายในการเดินทางไปราชการ',`
+    ${c.finComment?`<div class="warn">การเงินส่งกลับ: ${esc(c.finComment)}</div>`:''}
+    <div class="grid g2">
+      <div><label class="f">ออกเดินทางจริง (วัน-เวลา)</label><input class="in cl" type="datetime-local" id="c1" value="${dv('departDT',r.departDate+'T06:00')}"></div>
+      <div><label class="f">กลับถึงจริง (วัน-เวลา)</label><input class="in cl" type="datetime-local" id="c2" value="${dv('returnDT',r.returnDate+'T19:00')}"></div>
+      <div><label class="f">จำนวนมื้อที่ผู้จัดเลี้ยงอาหาร</label><input class="in cl" type="number" min="0" id="c3" value="${dv('meals',0)}"></div>
+      <div><label class="f">ค่าลงทะเบียนจริง (รวม)</label><input class="in cl" type="number" min="0" id="c4" value="${dv('regFee',sumR)}"></div>
+      <div><label class="f">ค่าที่พักจริง (รวม)</label><input class="in cl" type="number" min="0" id="c5" value="${dv('lodging',sumL)}"></div>
+      <div><label class="f">ค่าพาหนะจริง (รวม)</label><input class="in cl" type="number" min="0" id="c6" value="${dv('transport',sumF)}"></div>
+      <div><label class="f">ค่าใช้จ่ายอื่น (รวม)</label><input class="in cl" type="number" min="0" id="c7" value="${dv('other',0)}"></div>
+      <div><label class="f">รายละเอียดค่าใช้จ่ายอื่น</label><input class="in" id="c8" value="${dv('otherNote','')}"></div>
+    </div>
+    <label class="f" style="margin-top:12px">หลักฐานประกอบการเบิก</label>
+    <div class="opts">${Object.entries(DOCS).map(([k,t])=>`<label class="opt"><input type="checkbox" class="cd" value="${k}" ${(c.docs||['invite','report']).includes(k)?'checked':''}>${t}</label>`).join('')}</div>
+    <label class="drop" style="margin-top:10px;display:block">📎 อัปโหลดใบเสร็จ / หลักฐาน (สแกนหรือถ่ายรูป)<input type="file" id="cUpl" multiple accept=".pdf,image/*" hidden></label>
+    <ul class="files" id="cFiles"></ul>
+    <div id="cprev" style="margin-top:12px"></div>`,
+    [{t:'ยื่นเรื่องเบิก',fn:()=>{
+      const o=readC();
+      if(!o.departDT||!o.returnDT||o.returnDT<=o.departDT){toast('กรุณาตรวจสอบวัน-เวลาเดินทาง');return false}
+      storeFiles(cNew,'receipt').then(st=>{
+        r.claim={...o,files:[...cKeep,...st],at:new Date().toISOString()};r.status='claim_pending';
+        log(r,'ยื่นเรื่องเบิกเงิน',`ยอดเบิก ${money(calcClaim(r,o).total)} บาท · แนบไฟล์ ${r.claim.files.length} ไฟล์`);closeModal();commit(r,'ยื่นเรื่องเบิกแล้ว');
+      }).catch(e=>toast('บันทึกไฟล์ไม่สำเร็จ: '+e.message));
+      return false;
+    }}]);
+  const cKeep=[...(c.files||[])],cNew=[];
+  const drawC=()=>{$('#cFiles').innerHTML=[...cKeep.map((x,i)=>`<li>📄 <a href="#" data-open="${x.id}">${esc(x.name)}</a><button type="button" class="xbtn" style="height:30px" data-k="${i}">✕</button></li>`),
+    ...cNew.map((x,i)=>`<li>🆕 <span style="flex:1">${esc(x.name)}</span><small class="muted">${fsize(x.size)}</small><button type="button" class="xbtn" style="height:30px" data-n="${i}">✕</button></li>`)].join('')};
+  $('#cFiles').onclick=e=>{const b=e.target.closest('.xbtn');if(!b)return;if(b.dataset.k!=null)cKeep.splice(+b.dataset.k,1);else cNew.splice(+b.dataset.n,1);drawC()};
+  $('#cUpl').onchange=e=>{for(const x of e.target.files){if(x.size>MAX_FILE){toast(`${x.name} ใหญ่เกิน 10 MB`);continue}cNew.push(x)}e.target.value='';drawC()};
+  drawC();
+  const readC=()=>({departDT:$('#c1').value,returnDT:$('#c2').value,meals:num($('#c3').value),regFee:num($('#c4').value),lodging:num($('#c5').value),transport:num($('#c6').value),other:num($('#c7').value),otherNote:$('#c8').value.trim(),docs:$$('.cd').filter(x=>x.checked).map(x=>x.value)});
+  const prev=()=>{const o=readC(),cl=calcClaim(r,o);
+    $('#cprev').innerHTML=`<div class="stat"><div class="sum-row"><span>เบี้ยเลี้ยง ${cl.days} วัน × ${people(r).length} คน${o.meals?` (หัก ${o.meals} มื้อ)`:''}</span><span>${money(cl.rows.reduce((a,x)=>a+x.perDiem,0))}</span></div>
+      <div class="sum-row tot"><span>รวมขอเบิก</span><span>${money(cl.total)} บาท</span></div><small>${bahtText(cl.total)} · ประมาณการเดิม ${money(est.total)} บาท</small></div>
+      ${cl.lodgingOver?`<div class="warn">ค่าที่พักเกินเพดานรวม ${money(cl.capTotal)} บาท</div>`:''}
+      ${cl.total>est.total?`<div class="warn">ยอดเบิกเกินประมาณการที่อนุมัติ ${money(cl.total-est.total)} บาท</div>`:''}`};
+  $$('#mbody input').forEach(i=>i.addEventListener('input',prev));prev();
+};
+window.closeNoClaim=id=>{const r=reqById(id);r.status='closed';log(r,'ปิดเรื่องโดยไม่เบิกค่าใช้จ่าย');commit(r,'ปิดเรื่องแล้ว')};
+window.finPay=id=>{
+  const r=reqById(id);
+  modal('อนุมัติจ่าย',`<label class="f">เลขที่ใบสำคัญจ่าย</label><input class="in" id="pv" placeholder="เช่น PV-0001">`,
+    [{t:'บันทึกจ่าย',cls:'g',fn:()=>{const pv=$('#pv').value.trim();if(!pv){toast('กรุณาระบุเลขที่ใบสำคัญ');return false}
+      r.claim.voucher=pv;r.claim.paidAt=new Date().toISOString();r.status='paid';log(r,'การเงินอนุมัติจ่าย',`ใบสำคัญ ${pv} · ${money(calcClaim(r,r.claim).total)} บาท`);commit(r,'บันทึกการจ่ายแล้ว')}}]);
+};
+window.finReturn=id=>{
+  const r=reqById(id);
+  modal('ส่งกลับแก้ไขใบเบิก',`<label class="f">สิ่งที่ต้องแก้ไข / เอกสารที่ขาด</label><textarea class="in" id="fr"></textarea>`,
+    [{t:'ส่งกลับ',cls:'y',fn:()=>{const c=$('#fr').value.trim();if(!c){toast('กรุณาระบุเหตุผล');return false}
+      r.claim.finComment=c;r.status='reported';log(r,'การเงินส่งกลับแก้ไขใบเบิก',c);commit(r,'ส่งกลับแล้ว')}}]);
+};
+
+/* =====================================================================
+   ทะเบียน / สถิติ
+   ===================================================================== */
+function vAll(){
+  const fys=[...new Set([curFY(),...db.requests.map(r=>fyOf(r.meetStart))])].sort((a,b)=>b-a);
+  const fy=+(sessionStorage.getItem('em.fy')||curFY());
+  const list=db.requests.filter(r=>fyOf(r.meetStart)===fy);
+  const live=list.filter(r=>!COUNTED_OUT.includes(r.status));
+  const estSum=live.reduce((a,r)=>a+calcEst(r).total,0);
+  const paidSum=list.filter(r=>r.status==='paid').reduce((a,r)=>a+calcClaim(r,r.claim).total,0);
+  const ppl=USERS.filter(u=>!['director','finance'].includes(u.role));
+  $('#view').innerHTML=`
+  <div class="banner">📊 ทะเบียนการไปประชุม ปีงบประมาณ <select class="in" id="fySel" style="width:auto;padding:4px 8px">${fys.map(y=>`<option ${y===fy?'selected':''}>${y}</option>`).join('')}</select></div>
+  <div class="grid g4" style="margin-bottom:18px">
+    <div class="stat"><small>คำขอทั้งหมด</small><div class="big">${list.length}</div></div>
+    <div class="stat"><small>อนุมัติ / ดำเนินการ</small><div class="big">${live.filter(r=>!PENDING.includes(r.status)).length}</div></div>
+    <div class="stat"><small>ประมาณการรวม (บาท)</small><div class="big">${money(estSum)}</div></div>
+    <div class="stat"><small>เบิกจ่ายจริง (บาท)</small><div class="big">${money(paidSum)}</div></div>
+  </div>
+  <div class="card"><h2>การใช้สิทธิ์รายบุคคล</h2><div class="tbl"><table class="t"><thead><tr><th>ชื่อ</th><th>กลุ่มงาน</th><th>ใช้แล้ว</th><th>รออนุมัติ</th><th>คงเหลือ</th></tr></thead><tbody>
+    ${ppl.map(p=>{const q=quotaOf(p.id,fy);return `<tr><td>${esc(p.name)}</td><td>${esc(p.dept)}</td><td class="c">${q.used}</td><td class="c">${q.pending}</td><td class="c"><b>${q.left}</b></td></tr>`}).join('')}
+  </tbody></table></div></div>
+  <div class="card"><h2>รายการคำขอ <button class="btn o s" style="float:right" onclick="exportCSV(${fy})">⬇ ส่งออก CSV</button></h2>${reqTable(list)}</div>`;
+  $('#fySel').onchange=e=>{sessionStorage.setItem('em.fy',e.target.value);vAll()};
+}
+window.exportCSV=fy=>{
+  const rows=[['เลขที่','เรื่อง','ประเภท','ผู้จัด','จังหวัด','ผู้ขอ','กลุ่มงาน','จำนวนคน','วันเริ่มประชุม','วันสิ้นสุด','บทบาท','ชม.วิทยากร','ใช้สิทธิ์','ประมาณการ','เบิกจริง','P4P','สถานะ']];
+  db.requests.filter(r=>fyOf(r.meetStart)===fy).forEach(r=>{const q=user(r.requesterId);rows.push([r.no,r.title,KIND[r.kind],r.organizer,r.province,q.name,q.dept,people(r).length,r.meetStart,r.meetEnd,ROLE_MEET[r.role],r.speakerHours||0,r.quotaUse?'ใช่':'ไม่',calcEst(r).total,r.claim?calcClaim(r,r.claim).total:'',calcP4P(r).total,STATUS[r.status][0]])});
+  const csv='﻿'+rows.map(x=>x.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download=`ไปประชุม-ปีงบ${fy}.csv`;a.click();
+};
+
+/* =====================================================================
+   ตั้งค่า
+   ===================================================================== */
+function vSettings(){
+  const s=S();
+  const F=[['quota','สิทธิ์ไปประชุม (ครั้ง/คน/ปีงบ)'],['reportDays','ส่งสรุปภายใน (วันหลังกลับ)'],['perDiemA','เบี้ยเลี้ยง/วัน ประเภท ก (ชำนาญการลงมา)'],['perDiemB','เบี้ยเลี้ยง/วัน ประเภท ข (ชำนาญการพิเศษขึ้นไป)'],
+    ['lodgingA','เพดานที่พัก/คืน ประเภท ก'],['lodgingB','เพดานที่พัก/คืน ประเภท ข'],['carRate','รถยนต์ส่วนตัว บาท/กม.'],
+    ['p4pAttendDay','P4P ผู้เข้าฟัง (คะแนน/วัน เต็มวัน)'],['p4pSpeakerHour','P4P วิทยากร (คะแนน/ชม.)'],['gpsRadius','รัศมี GPS ห้องประชุม (เมตร)']];
+  $('#view').innerHTML=`<div class="banner">⚙️ ตั้งค่าอัตราและเกณฑ์</div>
+  <div class="card"><div class="grid g2">${F.map(([k,t])=>`<div><label class="f">${t}</label><input class="in" type="number" min="0" step="0.5" id="st_${k}" value="${s[k]}"></div>`).join('')}</div>
+  <p class="hint">อัตราเบี้ยเลี้ยง/ที่พักอ้างอิงระเบียบกระทรวงการคลัง (ตรวจสอบฉบับล่าสุดก่อนใช้จริง) · เกณฑ์ P4P เป็นค่าสมมติ ให้ปรับตามประกาศของโรงพยาบาล</p>
+  <div class="acts" style="margin-top:12px"><button class="btn" id="stSave">บันทึก</button><button class="btn o" id="stDef">คืนค่าเริ่มต้น</button><button class="btn r" id="stReset">ล้างข้อมูล → ข้อมูลตัวอย่าง</button></div></div>`;
+  $('#stSave').onclick=()=>{F.forEach(([k])=>s[k]=num($('#st_'+k).value));save();toast('บันทึกแล้ว')};
+  $('#stDef').onclick=()=>{db.settings={...DEFAULT_SETTINGS};save();vSettings();toast('คืนค่าเริ่มต้นแล้ว')};
+  $('#stReset').onclick=()=>modal('ล้างข้อมูลทั้งหมด','<p>ลบคำขอทั้งหมดในเบราว์เซอร์นี้และโหลดข้อมูลตัวอย่างใหม่?</p>',[{t:'ยืนยัน',cls:'r',fn:()=>{db=seed();save();IDB.clear().catch(()=>{});location.hash='#/home';route();toast('โหลดข้อมูลตัวอย่างแล้ว')}}]);
+}
+
+/* =====================================================================
+   เอกสารพิมพ์
+   ===================================================================== */
+function doPrint(html){$('#print').innerHTML=html;setTimeout(()=>window.print(),50)}
+function signBlock(name,pos,date){return `<div class="sign">(ลงชื่อ) ...................................................<br>(${esc(name)})<br>${esc(pos)}${date?`<br>${fmtDL(date.slice(0,10))}`:''}</div>`}
+function memoHead(r,subject,dateISO){
+  const req=user(r.requesterId);
+  return `<h1>บันทึกข้อความ</h1><table class="hdr"><tr><td colspan="2"><b>ส่วนราชการ</b> ${HOSP} ${esc(req.dept)}</td></tr>
+   <tr><td><b>ที่</b> ${esc(r.no)}</td><td><b>วันที่</b> ${fmtDL(dateISO.slice(0,10))}</td></tr>
+   <tr><td colspan="2"><b>เรื่อง</b> ${subject}</td></tr></table><hr style="border:0;border-top:1px solid #000;margin:0 0 8pt">`;
+}
+window.printMemo=id=>{
+  const r=reqById(id),req=user(r.requesterId),est=calcEst(r),pp=people(r);
+  const hd=r.history.find(h=>h.role==='head'&&/เห็นชอบ/.test(h.action)),dr=r.history.find(h=>h.role==='director'&&h.action==='ผู้อำนวยการอนุมัติ');
+  const head=USERS.find(u=>u.role==='head'&&u.dept===req.dept);
+  const q=quotaOf(r.requesterId,fyOf(r.meetStart),r.id);
+  const roleTxt=r.role==='speaker'?`เป็นวิทยากร จำนวน ${r.speakerHours} ชั่วโมง`:r.role==='both'?`เป็นวิทยากร จำนวน ${r.speakerHours} ชั่วโมง และเข้าร่วมประชุม`:'เข้าร่วมประชุม';
+  const refs=r.refs||[],files=r.files||[];
+  doPrint(`${memoHead(r,`ขออนุมัติเดินทางไปราชการเพื่อ${roleTxt}`,r.createdAt)}
+  <p><b>เรียน</b> ผู้อำนวยการ${HOSP}</p>
+  ${refs.length?`<p><b>อ้างถึง</b> ${refs.map((x,i)=>`${refs.length>1?(i+1)+'. ':''}${x.kind==='int'?'หนังสือ':'หนังสือ'+esc(r.organizer)+' '}ที่ ${esc(x.no)}${x.date?` ลงวันที่ ${fmtDL(x.date)}`:''}`).join('<br>')}</p>`:''}
+  ${files.length?`<p><b>สิ่งที่ส่งมาด้วย</b> ${files.map((x,i)=>`${files.length>1?(i+1)+'. ':''}${esc(x.name.replace(/\.[^.]+$/,''))}`).join('<br>')}</p>`:''}
+  <p class="ind">ด้วย ${esc(r.organizer)} กำหนดจัด${KIND[r.kind]} เรื่อง "${esc(r.title)}" ระหว่างวันที่ ${range(r.meetStart,r.meetEnd)} ณ ${esc(r.venue)} จังหวัด${esc(r.province)}${r.purpose?` โดยมีวัตถุประสงค์${esc(r.purpose)}`:''}</p>
+  <p class="ind">ในการนี้ ข้าพเจ้า ${esc(req.name)} ตำแหน่ง ${esc(req.pos)}${pp.length>1?` พร้อมด้วย ${pp.slice(1).map(p=>`${esc(p.name)} ตำแหน่ง ${esc(p.pos)}`).join(', ')} รวม ${pp.length} คน`:''} มีความประสงค์ขออนุมัติเดินทางไปราชการเพื่อ${roleTxt} โดยออกเดินทางวันที่ ${fmtDL(r.departDate)} และเดินทางกลับวันที่ ${fmtDL(r.returnDate)} รวม ${est.days} วัน เดินทางโดย${TRAVEL[r.travel]}
+  ${r.quotaUse?`ทั้งนี้ใช้สิทธิ์ไปประชุมครั้งที่ ${S().quota-q.left+1} จาก ${S().quota} ครั้ง ของปีงบประมาณ ${fyOf(r.meetStart)}`:`ทั้งนี้ไม่นับสิทธิ์ไปประชุม เนื่องจาก${esc(r.quotaReason)}`}
+  และขอเบิกค่าใช้จ่ายจาก${esc(r.budgetSource)} ประมาณการดังนี้</p>
+  <table><tr><th>รายการ</th><th>จำนวนเงิน (บาท)</th></tr>
+   <tr><td>ค่าเบี้ยเลี้ยง</td><td class="n">${money(est.rows.reduce((a,x)=>a+x.perDiem,0))}</td></tr>
+   <tr><td>ค่าเช่าที่พัก</td><td class="n">${money(est.rows.reduce((a,x)=>a+x.lodging,0))}</td></tr>
+   <tr><td>ค่าลงทะเบียน</td><td class="n">${money(est.rows.reduce((a,x)=>a+x.reg,0))}</td></tr>
+   <tr><td>ค่าพาหนะ</td><td class="n">${money(est.rows.reduce((a,x)=>a+x.fare,0)+est.shared)}</td></tr>
+   <tr><th>รวมทั้งสิ้น (${bahtText(est.gross)})</th><th class="n">${money(est.gross)}</th></tr></table>
+  <p class="ind">จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ</p>
+  ${signBlock(req.name,req.pos)}
+  <div class="box2"><div class="bx"><b>ความเห็นหัวหน้ากลุ่มงาน</b><br>${hd?`☑ เห็นชอบ ${esc(hd.comment||'')}`:'☐ เห็นชอบ &nbsp; ☐ ไม่เห็นชอบ'}<br><br>(ลงชื่อ) ..............................<br>(${esc(head?.name||'')})<br>${hd?fmtDL(hd.at.slice(0,10)):'วันที่ ........................'}</div>
+   <div class="bx"><b>คำสั่งผู้อำนวยการ</b><br>${dr?`☑ อนุมัติ ${esc(dr.comment||'')}`:'☐ อนุมัติ &nbsp; ☐ ไม่อนุมัติ'}<br><br>(ลงชื่อ) ..............................<br>(${esc(user('d1').name)})<br>ผู้อำนวยการ${HOSP}<br>${dr?fmtDL(dr.at.slice(0,10)):'วันที่ ........................'}</div></div>`);
+};
+window.printReport=id=>{
+  const r=reqById(id),req=user(r.requesterId),x=r.report,pp=people(r);
+  doPrint(`${memoHead(r,`รายงานการเดินทางไปราชการและสรุปผลการ${KIND[r.kind]}`,x.at)}
+  <p><b>เรียน</b> ผู้อำนวยการ${HOSP}</p>
+  <p class="ind">ตามที่ได้รับอนุมัติให้ ${pp.map(p=>esc(p.name)).join(', ')} เดินทางไปราชการเพื่อ${ROLE_MEET[r.role]}${r.role==='speaker'?` (${x.speakerHours||r.speakerHours} ชั่วโมง)`:''} ใน${KIND[r.kind]} เรื่อง "${esc(r.title)}" จัดโดย ${esc(r.organizer)} ระหว่างวันที่ ${range(r.meetStart,r.meetEnd)} ณ ${esc(r.venue)} จังหวัด${esc(r.province)} นั้น บัดนี้ได้เสร็จสิ้นแล้ว จึงขอรายงานสรุปผล ดังนี้</p>
+  <p><b>1. สาระสำคัญ</b></p><p class="ind" style="white-space:pre-wrap">${esc(x.summary)}</p>
+  <p><b>2. ประโยชน์ที่ได้รับ</b></p><p class="ind" style="white-space:pre-wrap">${esc(x.benefit)}</p>
+  <p><b>3. การนำไปใช้ / ข้อเสนอแนะ</b></p><p class="ind" style="white-space:pre-wrap">${esc(x.apply)}</p>
+  <p><b>4. แผนการถ่ายทอดความรู้</b></p><p class="ind">${esc(x.share||'-')}</p>
+  <p><b>5. การลงเวลาเข้าประชุม (สแกนใบหน้า + GPS)</b></p>
+  <table><tr><th>ผู้เดินทาง</th><th>วันประชุม</th><th>เวลา</th><th>ตำแหน่ง</th></tr>
+  ${pp.flatMap(p=>requiredDaysFor(r,p.id).map(d=>{const c=checkinOf(r,p.id,d);
+    return `<tr><td>${esc(p.name)}</td><td>${fmtD(d)}</td><td>${c?new Date(c.at).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})+' น.':'ไม่ได้ลงเวลา'}</td><td>${c?(c.dist==null?'ไม่มีพิกัดอ้างอิง':c.inRange?`ในที่ประชุม (${fmtDist(c.dist)})`:`นอกรัศมี (${fmtDist(c.dist)})`):'-'}</td></tr>`})).join('')}</table>
+  ${x.ciReason?`<p>เหตุผลที่ลงเวลาไม่ครบ: ${esc(x.ciReason)}</p>`:''}
+  <p class="ind">จึงเรียนมาเพื่อโปรดทราบ</p>${signBlock(req.name,req.pos)}`);
+};
+window.printClaim=id=>{
+  const r=reqById(id),req=user(r.requesterId),c=r.claim,cl=calcClaim(r,c);
+  doPrint(`<h2>หลักฐานการจ่ายเงินค่าใช้จ่ายในการเดินทางไปราชการ<br><span style="font-weight:400;font-size:14pt">(แบบ 8708 ส่วนที่ 2 — รูปแบบตัวอย่าง)</span></h2>
+  <p>ชื่อส่วนราชการ ${HOSP} &nbsp; จังหวัดพิษณุโลก</p>
+  <p>ประกอบใบเบิกค่าใช้จ่ายในการเดินทางของ ${esc(req.name)} ลงวันที่ ${fmtDL(c.at.slice(0,10))} เลขที่ ${esc(r.no)}</p>
+  <p>เดินทางไป${KIND[r.kind]} เรื่อง "${esc(r.title)}" ณ ${esc(r.venue)} จ.${esc(r.province)} ออกเดินทาง ${fmtDT(c.departDT)} กลับถึง ${fmtDT(c.returnDT)} รวมเวลา ${cl.days} วัน${c.meals?` (ผู้จัดเลี้ยงอาหาร ${c.meals} มื้อ)`:''}</p>
+  <table><tr><th>ลำดับ</th><th>ชื่อ</th><th>ตำแหน่ง</th><th>เบี้ยเลี้ยง</th><th>ที่พัก</th><th>พาหนะ</th><th>อื่น ๆ*</th><th>รวม</th><th>ลายมือชื่อผู้รับเงิน</th></tr>
+  ${cl.rows.map((x,i)=>`<tr><td class="n">${i+1}</td><td>${esc(x.u.name)}</td><td style="font-size:12pt">${esc(x.u.pos)}</td><td class="n">${money(x.perDiem)}</td><td class="n">${money(x.lodging)}</td><td class="n">${money(x.transport)}</td><td class="n">${money(x.reg+x.other)}</td><td class="n">${money(x.total)}</td><td></td></tr>`).join('')}
+  <tr><th colspan="7">รวมเงิน (${bahtText(cl.total)})</th><th class="n">${money(cl.total)}</th><th></th></tr></table>
+  <p style="font-size:13pt">* รวมค่าลงทะเบียน${c.otherNote?' และ '+esc(c.otherNote):''} · หลักฐานแนบ: ${(c.docs||[]).map(k=>DOCS[k]).join(', ')||'-'}</p>
+  <div class="box2"><div>${signBlock(req.name,req.pos+' (ผู้จ่ายเงิน/ผู้เบิก)')}</div><div>${signBlock(user('f1').name,user('f1').pos+' (ผู้ตรวจ)',c.paidAt)}</div></div>
+  ${c.voucher?`<p>เลขที่ใบสำคัญจ่าย ${esc(c.voucher)}</p>`:''}`);
+};
+
+/* ===================================================================== */
+load();
+if(!location.hash)location.hash='#/home';
+route();
+</script>
+</body>
+</html>
